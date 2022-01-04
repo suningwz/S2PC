@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="maintenance_hr_equipment_view_form_inherited" model="ir.ui.view">
+            <field name="name"> maintenance.hr_equipment_view_form.inherited</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='workcenter_id']" position="after">
+                    <field name="etalon"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

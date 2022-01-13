@@ -24,7 +24,7 @@
 
     # always loaded
     'data': [
-        'views/views.xml',
+        'views/res_partner.xml',
         'views/templates.xml',
     ],
     'installable': True,

@@ -39,6 +39,7 @@
         'views/menu_views.xml',
 
 
+        'views/hr_employee.xml',
     ],
     'assets': {
         'web._assets_primary_variables': [

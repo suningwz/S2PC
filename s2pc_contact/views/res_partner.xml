@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_partner_contact_inherited" model="ir.ui.view">
+            <field name="name">res.partner.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="vat" position="replace">
+                    <field name="vat" string="NIF"/>
+                    <field name="STAT"/>
+                    <field name="RCS"/>
+                    <field name="CIF"/>
+                </field>
+                <field name="mobile" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
+                <field name="city" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
+                <field name="category_id" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

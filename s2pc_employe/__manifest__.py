@@ -25,7 +25,7 @@
     # always loaded
     'data': [
 
-        'views/views.xml',
+        'views/hr_employee.xml',
 
     ],
     # only loaded in demonstration mode

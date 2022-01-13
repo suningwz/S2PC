@@ -3,7 +3,7 @@
 from odoo import models, fields, api
 
 
-class ResPartnerQS(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
     STAT = fields.Char('STAT', index=1)
     RCS = fields.Char('RCS', index=1)

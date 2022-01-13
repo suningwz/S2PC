@@ -8,10 +8,7 @@
             <field name="arch" type="xml">
                 <field name="coach_id" position="after">
                     <field name="cnaps_number"/>
-
                 </field>
-
-
             </field>
         </record>
     </data>

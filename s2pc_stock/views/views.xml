@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="./s2pc-addons/s2pc_stock.list">
+      <field name="name">./s2pc-addons/s2pc_stock list</field>
+      <field name="model">./s2pc-addons/s2pc_stock../s2pc-addons/s2pc_stock</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="./s2pc-addons/s2pc_stock.action_window">
+      <field name="name">./s2pc-addons/s2pc_stock window</field>
+      <field name="res_model">./s2pc-addons/s2pc_stock../s2pc-addons/s2pc_stock</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="./s2pc-addons/s2pc_stock.action_server">
+      <field name="name">./s2pc-addons/s2pc_stock server</field>
+      <field name="model_id" ref="model_./s2pc-addons/s2pc_stock_./s2pc-addons/s2pc_stock"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="./s2pc-addons/s2pc_stock" id="./s2pc-addons/s2pc_stock.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="./s2pc-addons/s2pc_stock.menu_1" parent="./s2pc-addons/s2pc_stock.menu_root"/>
+    <menuitem name="Menu 2" id="./s2pc-addons/s2pc_stock.menu_2" parent="./s2pc-addons/s2pc_stock.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="./s2pc-addons/s2pc_stock.menu_1_list" parent="./s2pc-addons/s2pc_stock.menu_1"
+              action="./s2pc-addons/s2pc_stock.action_window"/>
+    <menuitem name="Server to list" id="./s2pc-addons/s2pc_stock" parent="./s2pc-addons/s2pc_stock.menu_2"
+              action="./s2pc-addons/s2pc_stock.action_server"/>
+-->
+  </data>
+</odoo>

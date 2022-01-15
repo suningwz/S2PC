@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_./s2pc-addons/s2pc_vente_./s2pc-addons/s2pc_vente,./s2pc-addons/s2pc_vente../s2pc-addons/s2pc_vente,model_./s2pc-addons/s2pc_vente_./s2pc-addons/s2pc_vente,base.group_user,1,1,1,1

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+	<record id="module_category_s2pc" model="ir.module.category">
+	  <field name="name">Groupes S2PC</field>
+	  <field name="sequence">150</field>
+	</record>
+  </data>
+</odoo>
+

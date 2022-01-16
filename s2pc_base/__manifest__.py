@@ -22,6 +22,7 @@
 
     # always loaded
     'data': [
+        'security/res_groups_category.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

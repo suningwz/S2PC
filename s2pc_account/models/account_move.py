@@ -24,10 +24,6 @@ class AccountMoveLine(models.Model):
 	advised_ratio = fields.Float('Advised price ratio', digits='Discount', compute='_compute_advised_ratio')
 
 	def _compute_advised_price_unit(self):
-		"""
-
-		:return:
-		"""
 		for rec in self:
 			advised_pricelist = rec.move_id.advised_pricelist_id
 			if advised_pricelist:

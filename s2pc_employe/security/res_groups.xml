@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+	<record id="group_hr_team_leave" model="res.groups">
+        <field name="name">Gérer les congés de mon équipe</field>
+        <field name="category_id" ref="s2pc_base.module_category_s2pc"/>
+        <field name="implied_ids" eval="[(6, 0, [ref('hr.group_hr_user')])]"/>
+    </record>
+  </data>
+</odoo>

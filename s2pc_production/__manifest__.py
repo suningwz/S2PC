@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "./s2pc-addons/s2pc_production",
+    'name': "s2pc_production",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -27,6 +27,7 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/mrp_production_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

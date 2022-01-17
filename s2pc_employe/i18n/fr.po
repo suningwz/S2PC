@@ -106,3 +106,54 @@ msgstr "Mon équipe"
 #: model:ir.model,name:s2pc_employe.model_hr_leave
 msgid "Time Off"
 msgstr "Congés"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Active Time Off"
+msgstr "Congé actif"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Approved Time Off"
+msgstr "Congés approuvés"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Archived Time Off"
+msgstr "Congés archivés"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Group By"
+msgstr "Groupé par"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Need Second Approval"
+msgstr "Deuxième approbation nécessaire"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Status"
+msgstr "Etat"
+
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Teams leave"
+msgstr "Congés de mon équipe"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "To Approve"
+msgstr "A approuver"
+
+#. module: s2pc_employe
+#: model_terms:ir.ui.view,arch_db:s2pc_employe.hr_leave_team_view_search
+msgid "Type"
+msgstr "Type"

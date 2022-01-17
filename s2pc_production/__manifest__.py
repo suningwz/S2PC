@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mrp', 's2pc_product', 'quality_mrp'],
 
     # always loaded
     'data': [

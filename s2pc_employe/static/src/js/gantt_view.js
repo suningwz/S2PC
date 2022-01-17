@@ -10,10 +10,6 @@ odoo.define('s2pc_employe.GanttView', function (require) {
             Model: HrLeaveTeamGanttModel,
         }),
 
-        init: function (viewInfo, params) {
-            this._super.apply(this, arguments);
-            console.log(this.controllerParams);
-        }
     });
 
     view_registry.add('hr_leave_team_gantt', HrLeaveTeamGanttView);

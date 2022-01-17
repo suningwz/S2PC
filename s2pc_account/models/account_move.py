@@ -34,6 +34,6 @@ class AccountMoveLine(models.Model):
 	def _compute_advised_ratio(self):
 		for rec in self:
 			if rec.price_unit and rec.advised_price_unit:
-				rec.advised_ratio = rec.price_unit * 100 / rec.advised_price_unit
+				rec.advised_ratio = (rec.advised_price_unit - rec.price_unit) * 100 / rec.advised_price_unit
 			else:
 				rec.advised_ratio = 0

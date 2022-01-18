@@ -23,7 +23,7 @@ msgstr "<span>Prix unitaire conseillé</span>"
 #. module: s2pc_account
 #: model_terms:ir.ui.view,arch_db:s2pc_account.report_invoice_document_inherit
 msgid "<span>Advised price ratio</span>"
-msgstr "<span>Ratio du prix unitaire conseillé. %</span>"
+msgstr "<span>Remise par rapport au prix unitaire conseillé. %</span>"
 
 #. module: s2pc_account
 #: model:ir.model.fields,field_description:s2pc_account.field_account_move_line__advised_ratio
@@ -56,3 +56,13 @@ msgstr "Écriture comptable"
 #: model:ir.actions.report,name:s2pc_account.account_invoices_without_payment
 msgid "Invoices dealer"
 msgstr "Factures revendeurs"
+
+#. module: s2pc_account
+#: model_terms:ir.ui.view,arch_db:s2pc_account.account_payment_view_form_inherit
+msgid "Submit to validation"
+msgstr "Soumettre pour validation"
+
+#. module: s2pc_account
+#: model:ir.model.fields,field_description:s2pc_account.field_account_payment__need_validation
+msgid "Need validation"
+msgstr "Nécessite une validation"

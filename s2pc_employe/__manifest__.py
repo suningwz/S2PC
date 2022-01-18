@@ -20,14 +20,47 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr'],
+    'depends': ['base',
+                'hr',
+                'hr_holidays',
+                's2pc_base'],
 
     # always loaded
     'data': [
+        # report
 
-        'views/views.xml',
+        # security
+        'security/ir.model.access.csv',
+        'security/res_groups.xml',
+
+        # views
+        'views/hr_leave_team_views.xml',
+        'views/hr_employee_views.xml',
+        'views/menu_views.xml',
+
 
     ],
+    'assets': {
+        'web._assets_primary_variables': [
+
+        ],
+        'web.assets_backend': [
+            's2pc_employe/static/src/js/gantt_model.js',
+            's2pc_employe/static/src/js/gantt_view.js',
+        ],
+        'web.assets_frontend': [
+
+        ],
+        'web.assets_tests': [
+
+        ],
+        'web.qunit_suite_tests': [
+
+        ],
+        'web.assets_qweb': [
+
+        ],
+    },
     # only loaded in demonstration mode
     'installable': True,
     'application': False,

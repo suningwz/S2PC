@@ -25,9 +25,14 @@
 
     # always loaded
     'data': [
+        # security
+        'security/res_groups.xml',
+
+        #views
         'views/res_partner_views.xml',
         'views/report_invoice.xml',
         'views/account_move_views.xml',
+        'views/account_payment_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

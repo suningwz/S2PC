@@ -20,13 +20,19 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock', 's2pc_base'],
 
     # always loaded
     'data': [
+
+        # security
         # 'security/ir.model.access.csv',
+        'security/res_groups.xml',
+
+        # views
         'views/views.xml',
         'views/templates.xml',
+        'views/stock_picking_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

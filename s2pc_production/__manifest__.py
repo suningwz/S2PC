@@ -20,17 +20,21 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mrp', 's2pc_product', 'quality_mrp'],
+    'depends': ['base', 'mrp', 'sale', 'hr', 's2pc_product', 'quality_mrp'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
-        'views/mrp_production_views.xml',
+        'security/ir.model.access.csv',
+        'views/mrp_production.xml',
+        'views/mrp_team.xml',
+		'views/mrp_production_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': True,
+    'application': False,
+    'auto_install': True,
+    'license': 'LGPL-3',
 }

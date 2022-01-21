@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_equipment_request_view_tree_inherited" model="ir.ui.view">
+            <field name="name">maintenance.hr_equipment_request_view_tree.inherited</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='request_date']" position="after">
+                    <field name="schedule_date" widget="remaining_days"/>
+                    <field name="close_date" readonly="True"/>
+                    <!-- Add your fields or attributes here -->
+                </xpath>
+                <field name="request_date" position="before">
+                    <field name="request_check"/>
+                </field>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

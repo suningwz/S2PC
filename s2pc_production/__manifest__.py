@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "./s2pc-addons/s2pc_production",
+    'name': "s2pc_production",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,16 +20,20 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mrp', 'sale', 'hr'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/mrp_production.xml',
+        'views/mrp_team.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': True,
+    'application': False,
+    'auto_install': True,
+    'license': 'LGPL-3',
 }

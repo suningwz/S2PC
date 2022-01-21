@@ -1,3 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from . import models
+from . import mrp_workorder
+from . import mrp_team
+from . import mrp_production

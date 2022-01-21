@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id='mrp_team_action' model='ir.actions.act_window'>
+            <field name="name">MRP TEAMS</field>
+            <field name="res_model">mrp.team</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="mrp_team" name="Equipe de production" parent="mrp.menu_mrp_configuration"
+                  action="mrp_team_action"/>
+
+        <record id="mrp_team_view_tree" model="ir.ui.view">
+            <field name="name">mrp_team_view_tree</field>
+            <field name="model">mrp.team</field>
+            <field name="arch" type="xml">
+                <tree string="Equipe de production" editable="bottom">
+                    <field name="name"/>
+                    <field name="member_ids" widget="many2many_tags"
+                           options="{'color_field': 'color', 'no_create': True}"/>
+
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

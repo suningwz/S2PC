@@ -29,7 +29,6 @@
         'security/res_groups.xml',
 
         # views
-        'views/views.xml',
         'views/templates.xml',
         'views/stock_picking_views.xml',
     ],

@@ -39,3 +39,9 @@ msgstr "Transfert"
 #: model:res.groups,name:s2pc_stock.group_confirm_picking
 msgid "Validateur transfert interne/réception"
 msgstr ""
+
+#. module: s2pc_stock
+#: model_terms:ir.ui.view,arch_db:s2pc_stock.stock_report_view_inherit
+msgid "Stock turnover"
+msgstr "Rotation de stock"
+

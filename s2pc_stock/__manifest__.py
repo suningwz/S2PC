@@ -24,13 +24,11 @@
 
     # always loaded
     'data': [
-
-        # security
         # 'security/ir.model.access.csv',
+        'views/stock_picking_type.xml',
         'security/res_groups.xml',
 
         # views
-        'views/views.xml',
         'views/templates.xml',
         'views/stock_picking_views.xml',
     ],

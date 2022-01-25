@@ -15,6 +15,7 @@
 
             </field>
         </record>
+
         <record id="purchase_order_tree_inherited" model="ir.ui.view">
             <field name="name">purchase.order.tree.inherited</field>
             <field name="model">purchase.order</field>

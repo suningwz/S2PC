@@ -27,6 +27,15 @@
         'views/res_partner.xml',
         'views/templates.xml',
     ],
+
+    'assets': {
+        'web.assets_backend': [
+            "s2pc_contact/static/src/scss/theme.scss",
+        ],
+    },
+    'images': [
+        'static/img/background.png',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,

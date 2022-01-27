@@ -23,6 +23,9 @@
     # always loaded
     'data': [
         'security/res_groups_category.xml',
+
+        # views
+        'views/company_external_layout.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

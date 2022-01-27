@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock', 's2pc_base'],
+    'depends': ['base', 'stock', 'stock_enterprise', 's2pc_base'],
 
     # always loaded
     'data': [
@@ -31,6 +31,7 @@
         # views
         'views/templates.xml',
         'views/stock_picking_views.xml',
+        'report/stock_report_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

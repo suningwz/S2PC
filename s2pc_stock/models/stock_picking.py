@@ -18,6 +18,13 @@ class StockPicking(models.Model):
 			if rec.state == 'done':
 				rec.need_validation = False
 
+	def action_cancel(self):
+		res = super(StockPicking, self).action_cancel()
+		for rec in self:
+			if rec.state == 'canceled':
+				rec.need_validation = False
+		return res
+
 	@api.depends('state')
 	def _compute_show_validate(self):
 		super(StockPicking, self)._compute_show_validate()

@@ -8,3 +8,5 @@ class ModelName(models.Model):
     current_date = fields.Date(string="To days date", default=datetime.now())
     date_planned_start_related = fields.Datetime(string="infos date prevue", related="date_planned_start",
                                                  readonly=True)
+    # def show_runing_operation(self):
+

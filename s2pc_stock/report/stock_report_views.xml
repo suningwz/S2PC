@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="stock_report_view_inherit" model="ir.ui.view">
+      <field name="name">stock.report.view.inherit</field>
+      <field name="model">stock.report</field>
+      <field name="inherit_id" ref="stock_enterprise.stock_report_pivot_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='categ_id']" position="after">
+          <field name="product_id" type="row"/>
+        </xpath>
+        <xpath expr="//field[@name='delay']" position="after">
+          <field name="product_turnover" type="measure" string="Stock turnover"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="stock_dashboard_view_inherit" model="ir.ui.view">
+      <field name="name">stock.dashboard.view.inherit</field>
+      <field name="model">stock.report</field>
+      <field name="inherit_id" ref="stock_enterprise.stock_report_dashboard_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//view[@type='pivot'][1]" position="attributes">
+          <attribute name="ref">s2pc_stock.stock_report_view_inherit</attribute>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -39,7 +39,7 @@ odoo.define('s2pc_pos.models', function (require) {
                             }
                             resolve(server_ids);
                         } catch (error) {
-                            reject(error);
+                                reject(error);
                         }
                     });
                 }

@@ -1,17 +1,17 @@
 to_19_fr = (u'zéro', 'UN', 'DEUX', 'TROIS', 'QUATRE', 'CINQ', 'SIX',
-            'SEPT', 'HUIT', 'NEUF', 'DIX', 'ONZE', 'DOUZE', 'TREIZE',
-            'QUATORZE', 'QUINZE', 'SEIZE', 'DIX SEPT', 'DIX HUIT', 'DIX NEUF')
+			'SEPT', 'HUIT', 'NEUF', 'DIX', 'ONZE', 'DOUZE', 'TREIZE',
+			'QUATORZE', 'QUINZE', 'SEIZE', 'DIX SEPT', 'DIX HUIT', 'DIX NEUF')
 tens_fr = ('VINGT', 'TRENTE', 'QUARANTE', 'CINQUANTE', 'SOIXANTE', 'SOIXANTE DIX', 'QUATRE VINGT', 'QUATRE VINGT DIX')
 denom_fr = ('',
-            'MILLE', 'MILLIONS', 'MILLIARDS', 'BILLIONS', 'QUADRILLIONS',
-            'QUINTILLION', 'SEXTILLTION', 'SEPTILLION', 'OCTILLION', 'NONILLION',
-            'DECILLION', 'UNDECILLION', 'DUODECILLION', 'TREDECILLION', 'QUATTUORDECILLION',
-            'SEXDECILLION', 'SEPTENDECILLION', 'OCTODECILLION', 'ICOSILLION', 'VIGINTILLION')
+			'MILLE', 'MILLIONS', 'MILLIARDS', 'BILLIONS', 'QUADRILLIONS',
+			'QUINTILLION', 'SEXTILLTION', 'SEPTILLION', 'OCTILLION', 'NONILLION',
+			'DECILLION', 'UNDECILLION', 'DUODECILLION', 'TREDECILLION', 'QUATTUORDECILLION',
+			'SEXDECILLION', 'SEPTENDECILLION', 'OCTODECILLION', 'ICOSILLION', 'VIGINTILLION')
 
 
 def _convert_nn_fr(val):
 	""" convert a value < 100 to French
-	"""
+    """
 	if val < 20:
 		return to_19_fr[val]
 	for (dcap, dval) in ((k, 20 + (10 * v)) for (v, k) in enumerate(tens_fr)):
@@ -24,10 +24,10 @@ def _convert_nn_fr(val):
 def _convert_nnn_fr(val):
 	""" convert a value < 1000 to french
 
-		special cased because it is the level that kicks
-		off the < 100 special case.  The rest are more general.  This also allows you to
-		get strings in the form of 'forty-five hundred' if called directly.
-	"""
+        special cased because it is the level that kicks
+        off the < 100 special case.  The rest are more general.  This also allows you to
+        get strings in the form of 'forty-five hundred' if called directly.
+    """
 	word = ''
 	(mod, rem) = (val % 100, val // 100)
 	if rem > 0:

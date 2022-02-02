@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class StockReport(models.Model):
     _inherit = 'stock.report'
 
-    product_turnover = fields.Float('Outgoing valuation', group_operator="sum", readonly=True, store=True)
+    product_turnover = fields.Float('Outgoing valuation', group_operator="sum", readonly=True, store=True, digits=(12, 3))
 
     def _with(self):
         with_str = """
@@ -36,7 +36,7 @@ class StockReport(models.Model):
             sm.product_qty as product_qty,
             sm.company_id as company_id,
             cat.id as categ_id,
-            round(sum(svl.value)/svl_data.svl_total,2) as product_turnover
+            round(sum(svl.value)/svl_data.svl_total,3) as product_turnover
         """
 
         return select_str

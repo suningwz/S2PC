@@ -27,7 +27,9 @@
         'security/ir.model.access.csv',
         'views/mrp_production.xml',
         'views/mrp_team.xml',
-		'views/mrp_production_views.xml',
+        'views/mrp_production_views.xml',
+
+        'views/menu_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

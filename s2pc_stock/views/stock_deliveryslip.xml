@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-	<template id="report_invoice_pos_document" name="Invoice pos document">
+	<template id="report_picking_document" name="Picking document">
 	  <t t-call="s2pc_base.external_layout">
 		<div class="page">
 		  <div class="row">
 			<div class="col-1">
 			  <img src="/s2pc_base/static/img/company_logo.jpg" style="max-height: 85px;"/>
 			</div>
-			<div class="col-5 invoice-header" name="moto">
+			<div class="col-5 picking-header" name="moto">
 			  Société des Peintures et des Produits Chimiques
 			</div>
-			<div class="col-6 invoice-header">
+			<div class="col-6 picking-header">
 			  <span>
-				BON DE LIVRAISON / FACTURE
+				BON DE LIVRAISON / TRANSPORT
 			  </span>
 			  <br/>
 			  <span>
@@ -24,7 +24,7 @@
 		  </div>
 		  <div class="row">
 			<div class="col-6">
-			  <span class="invoice-title">Usine et siège:</span>
+			  <span class="picking-title">Usine et siège:</span>
 			  <br/>
 			  <t t-if="o.company_id.street and o.company_id.zip and o.company_id.city">
 				<span t-esc="o.company_id.street + ', '+ o.company_id.zip + ' - ' + o.company_id.city"/>
@@ -56,7 +56,7 @@
 			  </t>
 			  <!-- Unable to reach dynamic models, so set to static-->
 			  <br/>
-			  <span class="invoice-title">Showroom Antananarivo:</span>
+			  <span class="picking-title">Showroom Antananarivo:</span>
 			  <br/>
 			  <span>Bâtiment PRICE PLAZA 2, Andraharo</span>
 			  <br/>
@@ -92,15 +92,21 @@
 				  <span>Date:</span>
 				</div>
 				<div class="col-6">
-				  <span t-field="o.invoice_date"/>
+				  <span t-field="o.scheduled_date" t-options='{"widget": "date"}'/>
 				</div>
 			  </div>
+			  <br/>
 			  <div class="row">
 				<div class="col-3">
-				  <span>Client:</span>
+				  <t t-if="o.picking_type_code == 'incoming'">
+					<span>Fournisseur:</span>
+				  </t>
+				  <t t-else="o.picking_type_code != 'incoming'">
+					<span>Client:</span>
+				  </t>
 				</div>
 				<div class="col-6">
-				  <span t-field="o.partner_id"/>
+				  <span t-esc="o.get_parent_partner().name" style="font-weight:bold;"/>
 				</div>
 			  </div>
 			  <div class="row">
@@ -113,27 +119,27 @@
 					  <t t-if="o.partner_id.city">
 						<tr>
 						  <td>
-							<span t-esc="o.partner_id.city"/>
+							<span t-esc="o.partner_id.city" style="font-weight:bold;" />
 						  </td>
 						</tr>
 					  </t>
 					  <t t-if="o.partner_id.street">
 						<tr>
 						  <td>
-							<span t-esc="o.partner_id.street"/>
+							<span t-esc="o.partner_id.street" style="font-weight:bold;"/>
 						  </td>
 						</tr>
 					  </t>
 					  <tr>
 						<td>
 						  <span>NIF:</span>
-						  <span t-esc="o.partner_id.vat"/>
+						  <span t-esc="o.get_parent_partner().vat"/>
 						</td>
 					  </tr>
 					  <tr>
 						<td>
 						  <span>STAT:</span>
-						  <span t-esc="o.partner_id.STAT"/>
+						  <span t-esc="o.get_parent_partner().STAT"/>
 						</td>
 					  </tr>
 					</tbody>
@@ -144,7 +150,7 @@
 
 		  </div>
 		  <br/>
-		  <table class="invoice-table">
+		  <table class="picking-table">
 			<thead>
 			  <tr>
 				<th style="width:10%">
@@ -163,7 +169,7 @@
 				  <span>Montant</span>
 				</th>
 				<th style="width:16%">
-				  <span>Remise %</span>
+				  <span>Nbre colis</span>
 				</th>
 				<th style="width:16%">
 				  <span>Poids</span>
@@ -171,19 +177,28 @@
 			  </tr>
 
 			</thead>
-			<tbody class="invoice-body">
-			  <t t-foreach="range(line_range)" t-as="r">
-				<tr t-if="int(r) &lt; len(o.invoice_line_ids)">
+			<tbody class="picking-body">
+			  <t t-if="len(o.move_ids_without_package) &lt; 12" t-set="line_range" t-value="12"/>
+			  <t t-else="not len(o.move_ids_without_package) &lt; 12" t-set="line_range"
+				 t-value="len(o.move_ids_without_package)"/>
+			  <t t-foreach="range(int(line_range))" t-as="r">
+				<tr t-if="int(r) &lt; len(o.move_ids_without_package)">
 
-				  <td t-esc="o.invoice_line_ids[r].product_id.default_code or ''"></td>
-				  <td t-esc="o.invoice_line_ids[r].product_id.name"></td>
-				  <td t-esc="o.invoice_line_ids[r].quantity"></td>
-				  <td t-esc="o.invoice_line_ids[r].price_unit" t-options='{"widget": "float", "precision": 2}'></td>
-				  <td t-esc="o.invoice_line_ids[r].price_subtotal" t-options='{"widget": "float", "precision": 2}'></td>
-				  <td t-esc="o.invoice_line_ids[r].discount or ''"></td>
-				  <td t-esc="o.invoice_line_ids[r].weight or ''"></td>
+				  <td t-esc="o.move_ids_without_package[r].product_id.default_code or ''"/>
+				  <td t-esc="o.move_ids_without_package[r].product_id.name"/>
+				  <td t-esc="o.move_ids_without_package[r].product_uom_qty" class="text-right"/>
+				  <td t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('price_unit', '')"
+					  t-options='{"widget": "float", "precision": 2}' class="text-right"/>
+				  <td
+				  t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('price_subtotal', '')"
+				  t-options='{"widget": "float", "precision": 2}' class="text-right"/>
+				  <td
+				  t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('package_count', '')"
+				  class="text-right"/>
+				  <td t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('weight', '')"
+					  class="text-right"/>
 				</tr>
-				<tr t-if="not int(r) &lt; int(invoice_count)">
+				<tr t-if="not int(r) &lt; len(o.move_ids_without_package)">
 				  <!-- Fill blank row since height style doesn't work in PDF report -->
 				  <td>
 					<br/>
@@ -212,53 +227,23 @@
 			</tbody>
 			<tbody class="invoice-total">
 			  <tr>
-				<td></td>
-				<td></td>
-				<td colspan="2" class="allow_border">Montant HT</td>
-				<td class="allow_border">
-				  <span t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'></span>
+				<td colspan="4" class="text-right">
+				  <span style="text-align: left">TOTAL (Montant | Nbr colis | Pois kg)</span>
 				</td>
-				<td class="allow_border"></td>
-				<td class="allow_border">
-				  <span t-esc="sum(o.invoice_line_ids.mapped('weight')) or ''"></span>
+				<td class="text-right allow_border">
+				  <span t-esc="o.get_moves_report_values().get('total_amount', '')"/>
 				</td>
-			  </tr>
+				<td class="text-right allow_border">
+				  <span t-esc="o.get_moves_report_values().get('total_package_count', '')"/>
+				</td>
+				<td class="text-right allow_border">
+				  <span t-esc="o.get_moves_report_values().get('total_weight', '')"/>
+				</td>
 
-			  <tr>
-				<td></td>
-				<td></td>
-				<td colspan="2" class="allow_border">Montant TVA</td>
-				<td class="allow_border">
-				  <span t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>
-				</td>
-				<td></td>
-				<td></td>
-			  </tr>
-			  <tr>
-				<td></td>
-				<td></td>
-				<td colspan="2" class="allow_border">Montant TTC</td>
-				<td class="allow_border">
-				  <span t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'></span>
-				</td>
-				<td></td>
-				<td></td>
 			  </tr>
 			</tbody>
 
 		  </table>
-		  <br/>
-		  <div class="row">
-			<div class="col-12">
-			  <span>Arrêtées et réçues les marchandises désignées ci-dessus.</span>
-			</div>
-
-		  </div>
-		  <div class="row">
-			<div class="col-12">
-			  <span t-field="o.amount_total_text" style="font-size: 16px;font-weight: bold;"></span>
-			</div>
-		  </div>
 		  <br/>
 		  <div class="row">
 			<div class="col-12">
@@ -292,7 +277,7 @@
 				<td class="check-conform">NON</td>
 			  </tr>
 			  <tr>
-				<t t-foreach="o.invoice_line_ids" t-as="line">
+				<t t-foreach="o.move_ids_without_package" t-as="line">
 				  <tr>
 					<td t-esc="line.product_id.name" style="text-align: left"></td>
 					<td></td>
@@ -310,9 +295,17 @@
 			  </tr>
 			</tbody>
 		  </table>
+		  <br/>
 		  <div class="row" style="margin-bottom:100px">
 			<div class="col-5">S2PC</div>
-			<div class="col-3">Le client</div>
+			<div class="col-3">
+			  <t t-if="o.picking_type_code == 'incoming'">
+				<span>Fournisseur:</span>
+			  </t>
+			  <t t-else="o.picking_type_code != 'incoming'">
+				<span>Client:</span>
+			  </t>
+			</div>
 			<div class="col-3">Date de livraison:</div>
 		  </div>
 		</div>
@@ -321,16 +314,18 @@
 
 	</template>
 
-	<template id="report_invoice_pos" name="Invoice pos">
-	  <t t-call="web.html_container">
-		<t t-set="data_report_margin_top" t-value="1"/>
-		<t t-set="data_report_header_spacing" t-value="1"/>
-		<t t-foreach="docs" t-as="o">
-		  <t t-set="lang"
-			 t-value="o.invoice_user_id.sudo().lang if o.move_type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
-		  <t t-call="s2pc_pos.report_invoice_pos_document" t-lang="lang"/>
+	<template id="s2pc_report_deliveryslip" inherit_id="stock.report_deliveryslip">
+	  <xpath expr="//t[@t-foreach='docs']" position="replace">
+		<t t-call="web.html_container">
+		  <t t-set="data_report_margin_top" t-value="1"/>
+		  <t t-set="data_report_header_spacing" t-value="1"/>
+		  <t t-foreach="docs" t-as="o">
+			<t t-call="s2pc_stock.report_picking_document" t-lang="o.partner_id.lang"/>
+		  </t>
 		</t>
-	  </t>
+
+	  </xpath>
+
 	</template>
 
   </data>

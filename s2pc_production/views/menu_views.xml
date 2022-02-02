@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+	<menuitem id="mrp_production_team_planning"
+			  name="Planning par équipe"
+			  action="s2pc_production.mrp_production_gantt_action"
+			  parent="mrp.mrp_planning_menu_root"/>
+
+  </data>
+</odoo>
+

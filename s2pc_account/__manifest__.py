@@ -32,7 +32,8 @@
         'views/res_partner_views.xml',
         'views/report_invoice.xml',
         'views/account_move_views.xml',
-        'views/account_payment_views.xml'
+        'views/account_bank_statement_views.xml'
+
     ],
     # only loaded in demonstration mode
     'demo': [

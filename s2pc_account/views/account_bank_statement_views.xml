@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+	<record id="account_bank_statement_view_form_inherit" model="ir.ui.view">
+	  <field name="name">account.bank.statement.view.form.inherit</field>
+	  <field name="model">account.bank.statement</field>
+	  <field name="inherit_id" ref="account.view_bank_statement_form"/>
+	  <field name="arch" type="xml">
+		<xpath expr="//button[@name='button_validate_or_action']" position="attributes">
+		  <attribute name="groups">s2pc_account.group_confirm_payment</attribute>
+		</xpath>
+		<xpath expr="//button[@name='button_validate_or_action']" position="before">
+		  <field name="need_validation" invisible="1"/>
+		  <button name="action_need_validation" string="Submit to validation" type="object" class="oe_highlight"
+				  attrs="{'invisible': ['|', '|', '|', ('all_lines_reconciled', '=', False), ('line_ids','=',[]), ('state', '!=', 'posted'), ('need_validation', '=', True)]}"/>
+		</xpath>
+		<xpath expr="//div[@name='button_box']" position="after">
+		  <widget name="web_ribbon" title="Nécessite une validation" bg_color="bg-info"
+				attrs="{'invisible': [('need_validation', '=', False)]}"
+				tooltip="En attente de validation du responsable"/>
+		</xpath>
+	  </field>
+	</record>
+  </data>
+</odoo>

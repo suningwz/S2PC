@@ -11,7 +11,7 @@
           <field name="product_id" type="row"/>
         </xpath>
         <xpath expr="//field[@name='delay']" position="after">
-          <field name="product_turnover" type="measure" string="Stock turnover"/>
+          <field name="product_turnover" type="measure" string="Stock turnover" digits="[12,123]"/>
         </xpath>
       </field>
     </record>

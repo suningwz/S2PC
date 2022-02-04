@@ -23,7 +23,7 @@ msgstr "<span>Prix unitaire conseillé</span>"
 #. module: s2pc_account
 #: model_terms:ir.ui.view,arch_db:s2pc_account.report_invoice_document_inherit
 msgid "<span>Advised price ratio</span>"
-msgstr "<span>Remise par rapport au prix unitaire conseillé. %</span>"
+msgstr "<span>Remise/PU. conseillé %</span>"
 
 #. module: s2pc_account
 #: model:ir.model.fields,field_description:s2pc_account.field_account_move_line__advised_ratio

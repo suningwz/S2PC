@@ -95,6 +95,7 @@
 				  <span t-field="o.invoice_date"/>
 				</div>
 			  </div>
+			  <br/>
 			  <div class="row">
 				<div class="col-3">
 				  <span>Client:</span>

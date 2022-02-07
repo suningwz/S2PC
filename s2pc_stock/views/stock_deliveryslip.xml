@@ -97,7 +97,7 @@
 			  </div>
 			  <br/>
 			  <div class="row">
-				<div class="col-3">
+				<div class="col-5">
 				  <t t-if="o.picking_type_code == 'incoming'">
 					<span>Fournisseur:</span>
 				  </t>
@@ -105,7 +105,7 @@
 					<span>Client:</span>
 				  </t>
 				</div>
-				<div class="col-6">
+				<div class="col-7">
 				  <span t-esc="o.get_parent_partner().name" style="font-weight:bold;"/>
 				</div>
 			  </div>

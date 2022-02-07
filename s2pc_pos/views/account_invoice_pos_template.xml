@@ -88,26 +88,27 @@
 			</div>
 			<div class="col-6" style="padding-top:50px">
 			  <div class="row">
-				<div class="col-3">
+				<div class="col-4">
 				  <span>Date:</span>
 				</div>
-				<div class="col-6">
+				<div class="col-8">
 				  <span t-field="o.invoice_date"/>
 				</div>
 			  </div>
+			  <br/>
 			  <div class="row">
-				<div class="col-3">
+				<div class="col-4">
 				  <span>Client:</span>
 				</div>
-				<div class="col-6">
+				<div class="col-8">
 				  <span t-field="o.partner_id"/>
 				</div>
 			  </div>
 			  <div class="row">
-				<div class="col-3">
+				<div class="col-4">
 				  <span>Adresse:</span>
 				</div>
-				<div class="col-6">
+				<div class="col-8">
 				  <table class="table-address">
 					<tbody>
 					  <t t-if="o.partner_id.city">

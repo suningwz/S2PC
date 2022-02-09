@@ -28,7 +28,7 @@
         'views/mrp_production.xml',
         'views/mrp_team.xml',
         'views/mrp_production_views.xml',
-
+        'views/mrp_bom_form_view.xml',
         'views/menu_views.xml',
     ],
     # only loaded in demonstration mode

@@ -28,11 +28,12 @@
         # security
         'security/res_groups.xml',
 
-        #views
+        # views
         'views/res_partner_views.xml',
         'views/report_invoice.xml',
         'views/account_move_views.xml',
-        'views/account_bank_statement_views.xml'
+        'views/account_bank_statement_views.xml',
+        'views/account_move_invoice_report.xml'
 
     ],
     # only loaded in demonstration mode
@@ -42,4 +43,9 @@
     'application': False,
     'auto_install': False,
     'license': 'LGPL-3',
+    'assets': {
+        'web.report_assets_common': [
+            's2pc_account/static/src/css/account_move_invoice_report.css',
+        ],
+    },
 }

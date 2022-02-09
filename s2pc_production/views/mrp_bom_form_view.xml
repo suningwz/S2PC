@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mrp_bom_form_inherit" model="ir.ui.view">
+            <field name="name">mrp.mrp_bom_form_view.inherited</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='components']" position="replace">
+                    <page string="Components" name="components">
+                        <field name="bom_line_ids" widget="section_and_note_one2many"
+                               context="{'default_parent_product_tmpl_id': product_tmpl_id, 'default_product_id': False, 'default_company_id': company_id, 'default_bom_id': id}">
+                            <tree string="Components" editable="bottom">
+                                <control>
+                                    <create name="add_line_control" string="Add a line"/>
+                                    <create name="add_section_control" string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"/>
+
+                                </control>
+                                <field name="display_type"/>
+                                <field name="name" widget="section_and_note_text" optional="show"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id" context="{'default_detailed_type': 'product'}"/>
+                                <field name="product_tmpl_id" invisible="1"/>
+                                <button name="action_see_attachments" type="object" icon="fa-files-o"
+                                        aria-label="Product Attachments" title="Product Attachments"
+                                        class="float-right oe_read_only"/>
+                                <field name="attachments_count" class="text-left oe_read_only"
+                                       string=" "/>
+                                <field name="product_qty"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="parent_product_tmpl_id" invisible="1"/>
+                                <field name="product_uom_id" options="{'no_open':True,'no_create':True}"
+                                       groups="uom.group_uom"/>
+                                <field name="possible_bom_product_template_attribute_value_ids" invisible="1"/>
+                                <field name="bom_product_template_attribute_value_ids" optional="hide"
+                                       widget="many2many_tags" options="{'no_create': True}"
+                                       attrs="{'column_invisible': [('parent.product_id', '!=', False)]}"
+                                       groups="product.group_product_variant"/>
+                                <field name="allowed_operation_ids" invisible="1"/>
+                                <field name="operation_id" groups="mrp.group_mrp_routings" optional="hidden"
+                                       attrs="{'column_invisible': [('parent.type','not in', ('normal', 'phantom'))]}"
+                                       options="{'no_quick_create':True,'no_create_edit':True}"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

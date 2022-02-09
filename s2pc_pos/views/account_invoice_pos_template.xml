@@ -1,337 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-	<template id="report_invoice_pos_document" name="Invoice pos document">
-	  <t t-call="s2pc_base.external_layout">
-		<div class="page">
-		  <div class="row">
-			<div class="col-1">
-			  <img src="/s2pc_base/static/img/company_logo.jpg" style="max-height: 85px;"/>
-			</div>
-			<div class="col-5 invoice-header" name="moto">
-			  Société des Peintures et des Produits Chimiques
-			</div>
-			<div class="col-6 invoice-header">
-			  <span>
-				BON DE LIVRAISON / FACTURE
-			  </span>
-			  <br/>
-			  <span>
-				N°:
-			  </span>
-			  <span t-field="o.name"/>
-			</div>
-		  </div>
-		  <div class="row">
-			<div class="col-6">
-			  <span class="invoice-title">Usine et siège:</span>
-			  <br/>
-			  <t t-if="o.company_id.street and o.company_id.zip and o.company_id.city">
-				<span t-esc="o.company_id.street + ', '+ o.company_id.zip + ' - ' + o.company_id.city"/>
-			  </t>
-			  <t t-else="">
-				<span>Route de l’aéroport, Salazamay, B.P 393 501 - Toamasina</span>
-			  </t>
-			  <br/>
-			  <span>Tel:</span>
-			  <t t-if="o.company_id.phone">
-				<span t-esc="o.company_id.phone"/>
-			  </t>
-			  <t t-if="o.company_id.phone and o.company_id.mobile">
-				<span>/</span>
-			  </t>
-			  <t t-if="o.company_id.mobile">
-				<span t-esc="o.company_id.mobile"/>
-			  </t>
-			  <t t-else="">
-				<span>+261 32 05 707 91 / +261 32 07 184 88</span>
-			  </t>
-			  <br/>
-			  <span>Mail:</span>
-			  <t t-if="o.company_id.email">
-				<span t-esc="o.company_id.email"/>
-			  </t>
-			  <t t-else="">
-				<span>commercial@s2pc.mg</span>
-			  </t>
-			  <!-- Unable to reach dynamic models, so set to static-->
-			  <br/>
-			  <span class="invoice-title">Showroom Antananarivo:</span>
-			  <br/>
-			  <span>Bâtiment PRICE PLAZA 2, Andraharo</span>
-			  <br/>
-			  <span>Tel:</span>
-			  <span>+261 32 05 707 97</span>
-			  <br/>
-			  <span>Mail:</span>
-			  <span>commercial.tana@s2pc.mg</span>
-			  <br/>
-			  <span>Web:</span>
-			  <span>www.s2pc.mg</span>
-			  <br/>
-			  <!-- -->
-			  <span>STAT:</span>
-			  <t t-if="o.company_id.partner_id.STAT">
-				<span t-esc="o.company_id.partner_id.STAT"/>
-			  </t>
-			  <t t-else="">
-				<span>20221 31 1992 0 00021</span>
-			  </t>
-			  <br/>
-			  <span>NIF:</span>
-			  <t t-if="o.company_id.partner_id.vat">
-				<span t-esc="o.company_id.partner_id.vat"/>
-			  </t>
-			  <t t-else="">
-				<span>1000150227 du 01/04/2003</span>
-			  </t>
-			</div>
-			<div class="col-6" style="padding-top:50px">
-			  <div class="row">
-				<div class="col-3">
-				  <span>Date:</span>
-				</div>
-				<div class="col-6">
-				  <span t-field="o.invoice_date"/>
-				</div>
-			  </div>
-			  <div class="row">
-				<div class="col-3">
-				  <span>Client:</span>
-				</div>
-				<div class="col-6">
-				  <span t-field="o.partner_id"/>
-				</div>
-			  </div>
-			  <div class="row">
-				<div class="col-3">
-				  <span>Adresse:</span>
-				</div>
-				<div class="col-6">
-				  <table class="table-address">
-					<tbody>
-					  <t t-if="o.partner_id.city">
-						<tr>
-						  <td>
-							<span t-esc="o.partner_id.city"/>
-						  </td>
-						</tr>
-					  </t>
-					  <t t-if="o.partner_id.street">
-						<tr>
-						  <td>
-							<span t-esc="o.partner_id.street"/>
-						  </td>
-						</tr>
-					  </t>
-					  <tr>
-						<td>
-						  <span>NIF:</span>
-						  <span t-esc="o.partner_id.vat"/>
-						</td>
-					  </tr>
-					  <tr>
-						<td>
-						  <span>STAT:</span>
-						  <span t-esc="o.partner_id.STAT"/>
-						</td>
-					  </tr>
-					</tbody>
-				  </table>
-				</div>
-			  </div>
-			</div>
+    <data>
+        <template id="report_invoice_pos_document" name="Invoice document">
+            <t t-call="s2pc_base.external_layout">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-1">
+                            <img src="/s2pc_base/static/img/company_logo.jpg" style="max-height: 85px;"/>
+                        </div>
+                        <div class="col-5 invoice-header" name="moto">
+                            Société des Peintures et des Produits Chimiques
+                        </div>
+                        <div class="col-6 invoice-header">
+                            <span>
+                                BON DE LIVRAISON / FACTURE
+                            </span>
+                            <br/>
+                            <span>
+                                N°:
+                            </span>
+                            <span t-field="o.name"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="invoice-title">Usine et siège:</span>
+                            <br/>
+                            <t t-if="o.company_id.street and o.company_id.zip and o.company_id.city">
+                                <span t-esc="o.company_id.street + ', '+ o.company_id.zip + ' - ' + o.company_id.city"/>
+                            </t>
+                            <t t-else="">
+                                <span>Route de l’aéroport, Salazamay, B.P 393 501 - Toamasina</span>
+                            </t>
+                            <br/>
+                            <span>Tel:</span>
+                            <t t-if="o.company_id.phone">
+                                <span t-esc="o.company_id.phone"/>
+                            </t>
+                            <t t-if="o.company_id.phone and o.company_id.mobile">
+                                <span>/</span>
+                            </t>
+                            <t t-if="o.company_id.mobile">
+                                <span t-esc="o.company_id.mobile"/>
+                            </t>
+                            <t t-else="">
+                                <span>+261 32 05 707 91 / +261 32 07 184 88</span>
+                            </t>
+                            <br/>
+                            <span>Mail:</span>
+                            <t t-if="o.company_id.email">
+                                <span t-esc="o.company_id.email"/>
+                            </t>
+                            <t t-else="">
+                                <span>commercial@s2pc.mg</span>
+                            </t>
+                            <!-- Unable to reach dynamic models, so set to static-->
+                            <br/>
+                            <span class="invoice-title">Showroom Antananarivo:</span>
+                            <br/>
+                            <span>Bâtiment PRICE PLAZA 2, Andraharo</span>
+                            <br/>
+                            <span>Tel:</span>
+                            <span>+261 32 05 707 97</span>
+                            <br/>
+                            <span>Mail:</span>
+                            <span>commercial.tana@s2pc.mg</span>
+                            <br/>
+                            <span>Web:</span>
+                            <span>www.s2pc.mg</span>
+                            <br/>
+                            <!-- -->
+                            <span>STAT:</span>
+                            <t t-if="o.company_id.partner_id.STAT">
+                                <span t-esc="o.company_id.partner_id.STAT"/>
+                            </t>
+                            <t t-else="">
+                                <span>20221 31 1992 0 00021</span>
+                            </t>
+                            <br/>
+                            <span>NIF:</span>
+                            <t t-if="o.company_id.partner_id.vat">
+                                <span t-esc="o.company_id.partner_id.vat"/>
+                            </t>
+                            <t t-else="">
+                                <span>1000150227 du 01/04/2003</span>
+                            </t>
+                        </div>
+                        <div class="col-6" style="padding-top:50px">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>Date:</span>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.invoice_date"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>Client:</span>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.partner_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>Adresse:</span>
+                                </div>
+                                <div class="col-6">
+                                    <table class="table-address">
+                                        <tbody>
+                                            <t t-if="o.partner_id.city">
+                                                <tr>
+                                                    <td>
+                                                        <span t-esc="o.partner_id.city"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <t t-if="o.partner_id.street">
+                                                <tr>
+                                                    <td>
+                                                        <span t-esc="o.partner_id.street"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <tr>
+                                                <td>
+                                                    <span>NIF:</span>
+                                                    <span t-esc="o.partner_id.vat"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>STAT:</span>
+                                                    <span t-esc="o.partner_id.STAT"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-		  </div>
-		  <br/>
-		  <table class="invoice-table">
-			<thead>
-			  <tr>
-				<th style="width:10%">
-				  <span>Ref.</span>
-				</th>
-				<th style="width:30%">
-				  <span>Désignation</span>
-				</th>
-				<th style="width:7%">
-				  <span>Qté</span>
-				</th>
-				<th style="width:10%">
-				  <span>Prix unit HT</span>
-				</th>
-				<th style="width:16%">
-				  <span>Montant</span>
-				</th>
-				<th style="width:16%">
-				  <span>Remise %</span>
-				</th>
-				<th style="width:16%">
-				  <span>Poids</span>
-				</th>
-			  </tr>
+                    </div>
+                    <br/>
+                    <table class="invoice-table">
+                        <thead>
+                            <tr>
+                                <th style="width:10%">
+                                    <span>Ref.</span>
+                                </th>
+                                <th style="width:30%">
+                                    <span>Désignation</span>
+                                </th>
+                                <th style="width:7%">
+                                    <span>Qté</span>
+                                </th>
+                                <th style="width:10%">
+                                    <span>Prix unit HT</span>
+                                </th>
+                                <th style="width:16%">
+                                    <span>Montant</span>
+                                </th>
+                                <th style="width:16%">
+                                    <span>Remise %</span>
+                                </th>
+                                <th style="width:16%">
+                                    <span>Poids</span>
+                                </th>
+                            </tr>
 
-			</thead>
-			<tbody class="invoice-body">
-			  <t t-foreach="range(line_range)" t-as="r">
-				<tr t-if="int(r) &lt; len(o.invoice_line_ids)">
+                        </thead>
+                        <tbody class="invoice-body">
+                            <t t-foreach="range(line_range)" t-as="r">
+                                <tr t-if="int(r) &lt; len(o.invoice_line_ids)">
 
-				  <td t-esc="o.invoice_line_ids[r].product_id.default_code or ''"></td>
-				  <td t-esc="o.invoice_line_ids[r].product_id.name"></td>
-				  <td t-esc="o.invoice_line_ids[r].quantity"></td>
-				  <td t-esc="o.invoice_line_ids[r].price_unit" t-options='{"widget": "float", "precision": 2}'></td>
-				  <td t-esc="o.invoice_line_ids[r].price_subtotal" t-options='{"widget": "float", "precision": 2}'></td>
-				  <td t-esc="o.invoice_line_ids[r].discount or ''"></td>
-				  <td t-esc="o.invoice_line_ids[r].weight or ''"></td>
-				</tr>
-				<tr t-if="not int(r) &lt; int(invoice_count)">
-				  <!-- Fill blank row since height style doesn't work in PDF report -->
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				</tr>
+                                    <td t-esc="o.invoice_line_ids[r].product_id.default_code or ''"></td>
+                                    <td t-esc="o.invoice_line_ids[r].product_id.name"></td>
+                                    <td t-esc="o.invoice_line_ids[r].quantity"></td>
+                                    <td t-esc="o.invoice_line_ids[r].price_unit"
+                                        t-options='{"widget": "float", "precision": 2}'></td>
+                                    <td t-esc="o.invoice_line_ids[r].price_subtotal"
+                                        t-options='{"widget": "float", "precision": 2}'></td>
+                                    <td t-esc="o.invoice_line_ids[r].discount or ''"></td>
+                                    <td t-esc="o.invoice_line_ids[r].weight or ''"></td>
+                                </tr>
+                                <tr t-if="not int(r) &lt; int(invoice_count)">
+                                    <!-- Fill blank row since height style doesn't work in PDF report -->
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                </tr>
 
-			  </t>
-			</tbody>
-			<tbody class="invoice-total">
-			  <tr>
-				<td></td>
-				<td></td>
-				<td colspan="2" class="allow_border">Montant HT</td>
-				<td class="allow_border">
-				  <span t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'></span>
-				</td>
-				<td class="allow_border"></td>
-				<td class="allow_border">
-				  <span t-esc="sum(o.invoice_line_ids.mapped('weight')) or ''"></span>
-				</td>
-			  </tr>
+                            </t>
+                        </tbody>
+                        <tbody class="invoice-total">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2" class="allow_border">Montant HT</td>
+                                <td class="allow_border">
+                                    <span t-esc="o.amount_untaxed"
+                                          t-options='{"widget": "float", "precision": 2}'></span>
+                                </td>
+                                <td class="allow_border"></td>
+                                <td class="allow_border">
+                                    <span t-esc="sum(o.invoice_line_ids.mapped('weight')) or ''"></span>
+                                </td>
+                            </tr>
 
-			  <tr>
-				<td></td>
-				<td></td>
-				<td colspan="2" class="allow_border">Montant TVA</td>
-				<td class="allow_border">
-				  <span t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>
-				</td>
-				<td></td>
-				<td></td>
-			  </tr>
-			  <tr>
-				<td></td>
-				<td></td>
-				<td colspan="2" class="allow_border">Montant TTC</td>
-				<td class="allow_border">
-				  <span t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'></span>
-				</td>
-				<td></td>
-				<td></td>
-			  </tr>
-			</tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2" class="allow_border">Montant TVA</td>
+                                <td class="allow_border">
+                                    <span t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2" class="allow_border">Montant TTC</td>
+                                <td class="allow_border">
+                                    <span t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'></span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
 
-		  </table>
-		  <br/>
-		  <div class="row">
-			<div class="col-12">
-			  <span>Arrêtées et réçues les marchandises désignées ci-dessus.</span>
-			</div>
+                    </table>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <span>Arrêtées et réçues les marchandises désignées ci-dessus.</span>
+                        </div>
 
-		  </div>
-		  <div class="row">
-			<div class="col-12">
-			  <span t-field="o.amount_total_text" style="font-size: 16px;font-weight: bold;"></span>
-			</div>
-		  </div>
-		  <br/>
-		  <div class="row">
-			<div class="col-12">
-			  <span>VERIFICATION CONFORMITE</span>
-			</div>
-		  </div>
-		  <table class="conform-table">
-			<tbody>
-			  <tr>
-				<td rowspan="3">Désignation</td>
-				<td colspan="6">Etat emballages</td>
-				<td colspan="6">Conformité emballages</td>
-			  </tr>
-			  <tr>
-				<td colspan="2">Seau/Sachet</td>
-				<td colspan="2">Couvercle</td>
-				<td colspan="2">Carton</td>
-				<td colspan="2"># Lot</td>
-				<td colspan="2">Etiquette</td>
-			  </tr>
-			  <tr>
-				<td class="check-conform">Bon</td>
-				<td class="check-conform">Mauvais</td>
-				<td class="check-conform">Bon</td>
-				<td class="check-conform">Mauvais</td>
-				<td class="check-conform">Bon</td>
-				<td class="check-conform">Mauvais</td>
-				<td class="check-conform">OUI</td>
-				<td class="check-conform">NON</td>
-				<td class="check-conform">OUI</td>
-				<td class="check-conform">NON</td>
-			  </tr>
-			  <tr>
-				<t t-foreach="o.invoice_line_ids" t-as="line">
-				  <tr>
-					<td t-esc="line.product_id.name" style="text-align: left"></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				  </tr>
-				</t>
-			  </tr>
-			</tbody>
-		  </table>
-		  <div class="row" style="margin-bottom:100px">
-			<div class="col-5">S2PC</div>
-			<div class="col-3">Le client</div>
-			<div class="col-3">Date de livraison:</div>
-		  </div>
-		</div>
-	  </t>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <span t-field="o.amount_total_text" style="font-size: 16px;font-weight: bold;"></span>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <span>VERIFICATION CONFORMITE</span>
+                        </div>
+                    </div>
+                    <table class="conform-table">
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">Désignation</td>
+                                <td colspan="6">Etat emballages</td>
+                                <td colspan="6">Conformité emballages</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Seau/Sachet</td>
+                                <td colspan="2">Couvercle</td>
+                                <td colspan="2">Carton</td>
+                                <td colspan="2"># Lot</td>
+                                <td colspan="2">Etiquette</td>
+                            </tr>
+                            <tr>
+                                <td class="check-conform">Bon</td>
+                                <td class="check-conform">Mauvais</td>
+                                <td class="check-conform">Bon</td>
+                                <td class="check-conform">Mauvais</td>
+                                <td class="check-conform">Bon</td>
+                                <td class="check-conform">Mauvais</td>
+                                <td class="check-conform">OUI</td>
+                                <td class="check-conform">NON</td>
+                                <td class="check-conform">OUI</td>
+                                <td class="check-conform">NON</td>
+                            </tr>
+                            <tr>
+                                <t t-foreach="o.invoice_line_ids" t-as="line">
+                                    <tr>
+                                        <td t-esc="line.product_id.name" style="text-align: left"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row" style="margin-bottom:100px">
+                        <div class="col-5">S2PC</div>
+                        <div class="col-3">Le client</div>
+                        <div class="col-3">Date de livraison:</div>
+                    </div>
+                </div>
+            </t>
 
 
-	</template>
+        </template>
 
-	<template id="report_invoice_pos" name="Invoice pos">
-	  <t t-call="web.html_container">
-		<t t-set="data_report_margin_top" t-value="1"/>
-		<t t-set="data_report_header_spacing" t-value="1"/>
-		<t t-foreach="docs" t-as="o">
-		  <t t-set="lang"
-			 t-value="o.invoice_user_id.sudo().lang if o.move_type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
-		  <t t-call="s2pc_pos.report_invoice_pos_document" t-lang="lang"/>
-		</t>
-	  </t>
-	</template>
+        <template id="report_invoice_pos" name="Invoice pos">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="1"/>
+                <t t-set="data_report_header_spacing" t-value="1"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang"
+                       t-value="o.invoice_user_id.sudo().lang if o.move_type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
+                    <t t-call="s2pc_pos.report_invoice_pos_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
 
-  </data>
+    </data>
 </odoo>

@@ -59,8 +59,8 @@ class StockPicking(models.Model):
 			total_package_count += result[key]['package_count']
 			total_weight += result[key]['weight']
 		result['total_amount'] = total_amount
-		result['total_package_count'] = total_package_count
-		result['total_weight'] = total_weight
+		result['total_package_count'] = total_package_count or ''
+		result['total_weight'] = total_weight or ''
 		return result
 
 	@api.model

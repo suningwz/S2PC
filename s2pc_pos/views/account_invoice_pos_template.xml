@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <data>
         <template id="report_invoice_pos_document" name="Invoice document">
             <t t-call="s2pc_base.external_layout">
@@ -141,6 +142,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                     <br/>

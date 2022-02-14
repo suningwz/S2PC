@@ -6,11 +6,17 @@
             <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
             <field name="arch" type="xml">
 
+
                 <xpath expr="//field[@name='state']" position="after">
-                    <field name="workorder_ids" widget="many2many_tags" domain="[('state','=','progress')]"/>
+                    <field name="mrp_team"/>
+                    <field name="workorder_ids_state"/>
+
                 </xpath>
                 <xpath expr="//field[@name='date_planned_start']" position="replace">
-                    <field name="date_planned_start" readonly="1" optional="show" widget="date" decoration-danger="date_planned_start &lt; current_date" decoration-warning="date_planned_start &gt; current_date" decoration-success="date_planned_start == current_date"/>
+                    <field name="date_planned_start" readonly="1" optional="show" widget="date"
+                           decoration-danger="date_planned_start &lt; current_date"
+                           decoration-warning="date_planned_start &gt; current_date"
+                           decoration-success="date_planned_start == current_date"/>
                 </xpath>
                 <xpath expr="//field[@name='date_planned_start']" position="after">
                     <field name="date_planned_start_related" widget="remaining_days"/>
@@ -23,13 +29,37 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_unbuild']" position="after">
+                    <button name="get_workorder" type="object" string="GET WORKORDER"/>
+                </xpath>
 
                 <xpath expr="//field[@name='user_id']" position="after">
                     <!-- Add your fields or attributes here -->
                     <field name="mrp_team"/>
                 </xpath>
+                <xpath expr="//page[@name='miscellaneous']" position="after">
+                    <page name="quality" string="Quality">
+                        <field name="check_ids">
+                            <tree create="0" delete="0">
+                                <field name="product_id"/>
+                                <field name="measure_on"/>
+                                <field name="point_id"/>
+                                <field name="team_id"/>
+                                <field name="quality_state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
 
             </field>
+        </record>
+        <record id="action_mrp_consumption_warning_model" model="ir.actions.act_window">
+            <field name="name">Consumption Warning</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.consumption.warning.model</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
 
 

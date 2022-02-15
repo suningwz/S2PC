@@ -9,7 +9,8 @@ class ModelName(models.Model):
     date_planned_start_related = fields.Datetime(string="Infos date prevue", related="date_planned_start",
                                                  readonly=True)
     workorder_ids_state = fields.Char(string="Opération en cours", compute="get_state_workoderids")
-    consumption_warning_ids = fields.Many2many('mrp.consumption.warning')
+    consumption_record_ids = fields.One2many('mrp.consumption.record', 'mrp_production_id',
+                                             string='Liste de consommation')
 
     @api.depends('workorder_ids')
     def get_state_workoderids(self):
@@ -19,18 +20,20 @@ class ModelName(models.Model):
             else:
                 self.workorder_ids_state = ""
 
-    def get_workorder(self):
-        record = self.env['mrp.consumption.record']
-        print('rec avant')
-        for rec in record:
-            print(rec)
-        return True
+    # def get_workorder(self):
+    #     record = self.consumption_record_ids
+    #     print('rec avant')
+    #     for rec in record:
+    #         print("heeeeere", rec)
+    #         print(rec.product_id.name)
+    #     return True
 
-    def get_component(self):
-        component_adjustement = self.env['mrp.consumption.warning.line']
-        for rec in component_adjustement:
-            print(rec)
-        return True
+    # def get_component(self):
+    #     component_adjustement = self.env['mrp.consumption.warning.line'].search([])
+    #     for rec in component_adjustement:
+    #         print("heeeeere", rec.id)
+    #         print(rec.product_id)
+    #     return True
 
     @api.onchange('move_raw_ids')
     def onchange_move(self):

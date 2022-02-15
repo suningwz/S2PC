@@ -161,27 +161,28 @@
                     <table class="invoice-table">
                         <thead>
                             <tr>
-                                <th style="width:16%">
+                                <th style="width:10%">
                                     <span>Ref.</span>
                                 </th>
-                                <th style="width:36%">
+                                <th style="width:30%">
                                     <span>Désignation</span>
                                 </th>
                                 <th style="width:7%">
                                     <span>Qté</span>
                                 </th>
-                                <th style="width:20%">
+                                <th style="width:12%">
                                     <span>Prix unit HT</span>
                                 </th>
-                                <th style="width:26%">
-                                    <span>Montant</span>
-                                </th>
-                                <!--<th style="width:16%">
+                                <th style="width:10%">
                                     <span>Remise %</span>
                                 </th>
                                 <th style="width:16%">
-                                    <span>Poids</span>
-                                </th>-->
+                                    <span>TVA %</span>
+                                </th>
+                                <th style="width:20%">
+                                    <span>Montant HT</span>
+                                </th>
+
 
                             </tr>
 
@@ -200,10 +201,11 @@
                                     <td t-esc="o.invoice_line_ids[r].quantity"></td>
                                     <td t-esc="o.invoice_line_ids[r].price_unit"
                                         t-options='{"widget": "float", "precision": 2}'></td>
+                                    <td t-esc="o.invoice_line_ids[r].discount or ''"></td>
+                                    <td t-esc="o.invoice_line_ids[r].tax_ids.amount or ''"></td>
                                     <td t-esc="o.invoice_line_ids[r].price_subtotal"
                                         t-options='{"widget": "float", "precision": 2}'></td>
-                                    <!--<td t-esc="o.invoice_line_ids[r].discount or ''"></td>
-                                    <td t-esc="o.invoice_line_ids[r].weight or ''"></td>-->
+
 
                                 </tr>
                                 <tr t-if="not int(r) &lt; int(len(o.invoice_line_ids))">
@@ -223,12 +225,12 @@
                                     <td>
                                         <br/>
                                     </td>
-                                    <!--<td>
+                                    <td>
                                         <br/>
                                     </td>
                                     <td>
                                         <br/>
-                                    </td>-->
+                                    </td>
 
                                 </tr>
 
@@ -236,6 +238,8 @@
                         </tbody>
                         <tbody class="invoice-total">
                             <tr>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td colspan="2" class="allow_border">Montant HT</td>
@@ -252,14 +256,18 @@
                             <tr>
                                 <td></td>
                                 <td></td>
+
+                                <td></td>
+                                <td></td>
                                 <td colspan="2" class="allow_border">Montant TVA</td>
                                 <td class="allow_border">
                                     <span t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>
                                 </td>
-                                <td></td>
-                                <td></td>
                             </tr>
                             <tr>
+                                <td></td>
+                                <td></td>
+
                                 <td></td>
                                 <td></td>
                                 <td colspan="2" class="allow_border">Montant TTC</td>
@@ -267,8 +275,6 @@
                                     <span t-esc="o.amount_total"
                                           t-options='{"widget": "float", "precision": 2}'></span>
                                 </td>
-                                <td></td>
-                                <td></td>
                             </tr>
                         </tbody>
 
@@ -463,23 +469,26 @@
                                 <th style="width:10%">
                                     <span>Prix unit HT</span>
                                 </th>
-                                <th style="width:16%">
-                                    <span>Montant</span>
-                                </th>
-                                <!--<th style="width:16%">
+                                <th style="width:6%">
                                     <span>Remise %</span>
                                 </th>
-                                <th style="width:16%">
-                                    <span>Poids</span>
-                                </th>-->
+                                <th style="width:6%">
+                                    <span>TVA %</span>
+                                </th>
                                 <th name="th_advised_price"
-                                    t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                    t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                                    style="width:10%">
                                     <span>Prix unitaire conseillé</span>
                                 </th>
                                 <th name="th_advised_ratio"
-                                    t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                    t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                                    style="width:10%">
                                     <span>Remise/PU. conseillé en %</span>
                                 </th>
+                                <th style="width:16%">
+                                    <span>Montant HT</span>
+                                </th>
+
                             </tr>
 
                         </thead>
@@ -497,10 +506,8 @@
                                     <td t-esc="o.invoice_line_ids[r].quantity"></td>
                                     <td t-esc="o.invoice_line_ids[r].price_unit"
                                         t-options='{"widget": "float", "precision": 2}'></td>
-                                    <td t-esc="o.invoice_line_ids[r].price_subtotal"
-                                        t-options='{"widget": "float", "precision": 2}'></td>
-                                    <!--<td t-esc="o.invoice_line_ids[r].discount or ''"></td>
-                                    <td t-esc="o.invoice_line_ids[r].weight or ''"></td>-->
+                                    <td t-esc="o.invoice_line_ids[r].discount or ''"></td>
+                                    <td t-esc="o.invoice_line_ids[r].tax_ids.amount or ''"></td>
                                     <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <t t-if="o.move_type == 'out_invoice' and o.advised_pricelist_id">
                                             <span class="text-nowrap"
@@ -512,6 +519,9 @@
                                             <span class="text-nowrap" t-field="o.invoice_line_ids[r].advised_ratio"/>
                                         </t>
                                     </td>
+                                    <td t-esc="o.invoice_line_ids[r].price_subtotal"
+                                        t-options='{"widget": "float", "precision": 2}'></td>
+
                                 </tr>
                                 <tr t-if="not int(r) &lt; int(len(o.invoice_line_ids))">
                                     <!-- Fill blank row since height style doesn't work in PDF report -->
@@ -536,12 +546,12 @@
                                     <td>
                                         <br/>
                                     </td>
-                                    <!--<td>
+                                    <td>
                                         <br/>
                                     </td>
                                     <td>
                                         <br/>
-                                    </td>-->
+                                    </td>
                                 </tr>
 
                             </t>
@@ -550,28 +560,39 @@
                             <tr>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td colspan="2" class="allow_border">Montant HT</td>
                                 <td class="allow_border">
                                     <span t-esc="o.amount_untaxed"
                                           t-options='{"widget": "float", "precision": 2}'></span>
                                 </td>
-                               <!-- <td class="allow_border"></td>
-                                <td class="allow_border">
-                                    <span t-esc="sum(o.invoice_line_ids.mapped('weight')) or ''"></span>
-                                </td>-->
+                                <!-- <td class="allow_border"></td>
+                                 <td class="allow_border">
+                                     <span t-esc="sum(o.invoice_line_ids.mapped('weight')) or ''"></span>
+                                 </td>-->
                             </tr>
 
                             <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td colspan="2" class="allow_border">Montant TVA</td>
                                 <td class="allow_border">
                                     <span t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>
                                 </td>
-                                <td></td>
-                                <td></td>
+
                             </tr>
                             <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td colspan="2" class="allow_border">Montant TTC</td>
@@ -579,8 +600,7 @@
                                     <span t-esc="o.amount_total"
                                           t-options='{"widget": "float", "precision": 2}'></span>
                                 </td>
-                                <td></td>
-                                <td></td>
+
                             </tr>
                         </tbody>
 

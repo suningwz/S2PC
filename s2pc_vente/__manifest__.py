@@ -20,13 +20,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'sales_team'],
+    'depends': ['s2pc_base', 's2pc_product', 'base', 'sale', 'sales_team'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/hide_report.xml',
-        'views/templates.xml',
+        'views/pro_format_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

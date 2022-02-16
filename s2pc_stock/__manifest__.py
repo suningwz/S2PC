@@ -29,7 +29,7 @@
         'security/res_groups.xml',
 
         # views
-        'views/templates.xml',
+        'views/hide_stock_report.xml',
         'views/stock_picking_views.xml',
         'report/stock_report_views.xml',
         'views/stock_deliveryslip.xml',

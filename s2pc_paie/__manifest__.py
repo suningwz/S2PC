@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "./s2pc-addons/s2pc_paie",
+    'name': "s2pc_paie",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['s2pc_base', 'base', 'hr_payroll'],
 
     # always loaded
     'data': [

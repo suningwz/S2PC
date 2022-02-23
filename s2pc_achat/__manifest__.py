@@ -20,13 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'purchase'],
+    'depends': ['s2pc_base', 's2pc_product', 'base', 'purchase'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/purchase_order.xml',
-        'views/templates.xml',
+        'views/hide_report.xml',
+        'views/report_purchasequotation_document_inherit.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

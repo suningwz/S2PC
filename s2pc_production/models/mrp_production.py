@@ -20,32 +20,10 @@ class ModelName(models.Model):
             else:
                 self.workorder_ids_state = ""
 
-    # def get_workorder(self):
-    #     record = self.consumption_record_ids
-    #     print('rec avant')
-    #     for rec in record:
-    #         print("heeeeere", rec)
-    #         print(rec.product_id.name)
-    #     return True
-
-    # def get_component(self):
-    #     component_adjustement = self.env['mrp.consumption.warning.line'].search([])
-    #     for rec in component_adjustement:
-    #         print("heeeeere", rec.id)
-    #         print(rec.product_id)
-    #     return True
-
-    @api.onchange('move_raw_ids')
-    def onchange_move(self):
-        print("move_raw_ids on change")
-        for rec in self.move_raw_ids:
-            print(rec.name)
-
     def _action_generate_consumption_wizard(self, consumption_issues):
         ctx = self.env.context.copy()
         lines = []
         for order, product_id, consumed_qty, expected_qty in consumption_issues:
-            print("mandalo append")
             lines.append((0, 0, {
                 'mrp_production_id': order.id,
                 'product_id': product_id.id,
@@ -54,7 +32,7 @@ class ModelName(models.Model):
                 'product_consumed_qty_uom': consumed_qty,
                 'product_expected_qty_uom': expected_qty
             }))
-            print("eto ao zao")
+
             self.env['mrp.consumption.record'].create({
                 'mrp_production_id': order.id,
                 'product_id': product_id.id,
@@ -63,8 +41,13 @@ class ModelName(models.Model):
                 'product_consumed_qty_uom': consumed_qty,
                 'product_expected_qty_uom': expected_qty
             })
-            print("eto ah zao vita create")
+
         ctx.update({'default_mrp_production_ids': self.ids, 'default_mrp_consumption_warning_line_ids': lines})
         action = self.env["ir.actions.actions"]._for_xml_id("mrp.action_mrp_consumption_warning")
         action['context'] = ctx
         return action
+
+    def get_bom(self):
+        for rec in self.move_raw_ids:
+            print(rec.bom_line_id.name)
+        return True

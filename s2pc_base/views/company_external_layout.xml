@@ -22,6 +22,12 @@
                 </div>
             </div>
         </div>
+        <div class="footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                Page: <span class="page"/> / <span class="topage"/>
+            </div>
+
+        </div>
 
         <div
                 t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}"

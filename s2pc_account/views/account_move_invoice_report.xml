@@ -26,14 +26,13 @@
                             Société des Peintures et des Produits Chimiques
                         </div>
                         <div class="col-6 invoice-header">
-                            <span>
-                                FACTURE
-                            </span>
-                            <br/>
-                            <span>
-                                N°:
-                            </span>
-                            <span t-field="o.name"/>
+                            <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">FACTURE</span>
+                            <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">FACTURE EN BROUILLON</span>
+                            <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">FACTURE ANNULÉE</span>
+                            <span t-if="o.move_type == 'out_refund'">FACTURE D'AVOIR</span>
+                            <span t-if="o.move_type == 'in_refund'">NOTE DE CREDIT DU VENDEUR</span>
+                            <span t-if="o.move_type == 'in_invoice'">FACTURE DU VENDEUR</span>
+                            <span t-if="o.name != '/'" t-field="o.name"/>
                         </div>
                     </div>
                     <div class="row">

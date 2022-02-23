@@ -4,7 +4,7 @@
 	<menuitem id="hr_menu_leave_team_root"
 			  name="My Team leave"
 			  sequence="186"
-			  web_icon="hr,static/description/icon.png"
+			  parent="hr_holidays.menu_hr_holidays_root"
 			  action="s2pc_employe.action_hr_leave_team"
 			  groups="s2pc_employe.group_hr_team_leave"/>
 

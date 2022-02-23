@@ -7,7 +7,7 @@
         </record>
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="mrp_team" name="Equipe de production" parent="mrp.menu_mrp_configuration"
-                  action="mrp_team_action"/>
+                  action="mrp_team_action" groups="mrp.group_mrp_manager"/>
 
         <record id="mrp_team_view_tree" model="ir.ui.view">
             <field name="name">mrp_team_view_tree</field>

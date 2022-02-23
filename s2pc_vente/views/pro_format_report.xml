@@ -177,7 +177,7 @@
                                     <th name="th_taxes" class="text-center">TVA %</th>
                                     <th name="th_subtotal" class="text-center">
                                         <span groups="account.group_show_line_subtotals_tax_excluded">Montant</span>
-                                        <span groups="account.group_show_line_subtotals_tax_included">Montan HT</span>
+                                        <span groups="account.group_show_line_subtotals_tax_included">Montant HT</span>
                                     </th>
                                 </tr>
                             </thead>

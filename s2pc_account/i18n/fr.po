@@ -58,11 +58,11 @@ msgid "Invoices dealer"
 msgstr "Factures revendeurs"
 
 #. module: s2pc_account
-#: model_terms:ir.ui.view,arch_db:s2pc_account.account_payment_view_form_inherit
+#: model_terms:ir.ui.view,arch_db:s2pc_account.account_bank_statement_view_form_inherit
 msgid "Submit to validation"
 msgstr "Soumettre pour validation"
 
 #. module: s2pc_account
-#: model:ir.model.fields,field_description:s2pc_account.field_account_payment__need_validation
+#: model:ir.model.fields,field_description:s2pc_account.field_account_bank_statementThe unit of measure kg defined on the order line doesn't belong to the same category as the unit of measure Unités defined on the product. Please correct the unit of measure defined on the order line or on the product, they should belong to the same category.__need_validation
 msgid "Need validation"
 msgstr "Nécessite une validation"

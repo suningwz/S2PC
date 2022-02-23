@@ -8,3 +8,8 @@ class HrEmployee(models.Model):
 
     cnaps_number = fields.Char('Numero CNAPS', index=1)
     team_employee_ids = fields.Many2many('hr.employee', 'hr_employee_team_rel', 'manager_id', 'employee_id', 'Team')
+
+
+class HrEmployeePublic(models.Model):
+    _inherit = 'hr.employee.public'
+    cnaps_number = fields.Char(readonly=True)

@@ -18,12 +18,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 's2pc_base', 'hr_appraisal'],
+    'depends': ['base', 's2pc_base', 'hr_appraisal', 'hr'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
+        'security/ir.model.access.csv',
+        'views/hr_appraisal_goal_department_view.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

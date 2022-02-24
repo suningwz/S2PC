@@ -7,7 +7,6 @@
 			  parent="hr_holidays.menu_hr_holidays_root"
 			  action="s2pc_employe.action_hr_leave_team"
 			  groups="s2pc_employe.group_hr_team_leave"/>
-
   </data>
 </odoo>
 

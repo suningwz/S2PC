@@ -139,18 +139,18 @@
             <field name="view_mode">kanban,tree,form</field>
         </record>
 
+        <menuitem name="Objectifs"
+                  parent="hr_appraisal.menu_hr_appraisal_root"
+                  id="menu_hr_appraisal_goal_root"
+                  groups="hr_appraisal.group_hr_appraisal_manager"
+                  sequence="3"/>
+
         <menuitem name="Objectifs par département"
                   parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
                   id="menu_hr_appraisal_goal_departement"
                   action="action_hr_appraisal_goal_department"
                   groups="hr_appraisal.group_hr_appraisal_manager"
                   sequence="2"/>
-
-        <menuitem name="Objectifs"
-                  parent="hr_appraisal.menu_hr_appraisal_root"
-                  id="menu_hr_appraisal_goal_root"
-                  groups="hr_appraisal.group_hr_appraisal_manager"
-                  sequence="3"/>
 
         <menuitem name="Objectifs personnels"
               parent="s2pc_evaluation.menu_hr_appraisal_goal_root"

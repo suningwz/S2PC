@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="MrpQualityWidget">
+        <div class="col-12"><span style="font-size:18px;font-weight:bold">Contrôle de qualité</span></div>
+		<table class="table table-condensed">
+		  <thead style="background:aliceblue">
+			<t t-foreach="header_check" t-as="head">
+			  <th t-esc="head"></th>
+			</t>
+			<th></th>
+		  </thead>
+		  <tbody>
+			<t t-foreach="check_lines" t-as="line">
+			  <tr>
+				<td t-esc="line.work or ''"></td>
+				<td t-esc="line.workcenter_id or ''"></td>
+				<td t-esc="line.measure_on or ''"></td>
+				<td t-esc="line.point_id or ''"></td>
+				<td t-esc="line.quality_state or ''"></td>
+				<td t-esc="line.additional_note or ''" style="width:30%"></td>
+
+				<td><a t-att-id="line.id"
+					   t-att-model="'quality.check'"
+					   role="button"
+					   class="btn o_optional_button btn-link o_icon_button open_record"
+					   style="margin-right: 10px;"
+					   href="#">=></a></td>
+			  </tr>
+			</t>
+		  </tbody>
+		</table>
+	  	<div class="col-12"><span style="font-size:18px;font-weight:bold">Alerte de qualité</span></div>
+		<table class="table table-condensed">
+			<thead style="background:aliceblue">
+			  <t t-foreach="header_alert" t-as="head">
+				<th t-esc="head"></th>
+			  </t>
+			  <th></th>
+			</thead>
+			<tbody>
+			  <t t-foreach="alert_lines" t-as="line">
+				<tr>
+				  <td t-esc="line.work or ''"></td>
+				  <td t-esc="line.name or ''"></td>
+				  <td t-esc="line.workcenter_id or ''"></td>
+				  <td t-esc="line.user_id or ''"></td>
+				  <td t-esc="line.reason_id or ''"></td>
+				  <td t-esc="line.stage_id or ''"></td>
+				  <td t-raw="line.description or ''" style="width:30%"></td>
+				  <td><a t-att-id="line.id"
+						 t-att-model="'quality.alert'"
+				  		 role="button"
+						 class="btn o_optional_button btn-link o_icon_button open_record"
+						 style="margin-right: 10px;"
+						 href="#">=></a></td>
+				</tr>
+			  </t>
+			</tbody>
+		  </table>
+    </t>
+</templates>

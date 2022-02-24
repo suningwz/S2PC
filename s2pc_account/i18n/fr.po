@@ -40,7 +40,7 @@ msgstr "Prix unitaire conseillé"
 #: model:ir.model.fields,field_description:s2pc_account.field_account_move__advised_pricelist_id
 #: model:ir.model.fields,field_description:s2pc_account.field_account_payment__advised_pricelist_id
 msgid "Advised pricelist"
-msgstr "Liste de prix conseiller"
+msgstr "Liste de prix conseillée"
 
 #. module: s2pc_account
 #: model:ir.model,name:s2pc_account.model_account_move

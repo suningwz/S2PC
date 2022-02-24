@@ -66,7 +66,7 @@ class StockPicking(models.Model):
 	@api.model
 	def get_parent_partner(self):
 		if self.partner_id.parent_id:
-			return self.partner_id.parent_id.get_parent_partner()
+			return self.partner_id.parent_id
 		return self.partner_id
 
 

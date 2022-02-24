@@ -13,7 +13,9 @@ class AccountBankStatement(models.Model):
 			rec.need_validation = True
 
 	def button_validate_or_action(self):
-		res = super(AccountBankStatement, self).button_validate()
+
+		res = super(AccountBankStatement, self).button_validate_or_action()
+
 		for rec in self:
 			rec.need_validation = False
 		return res

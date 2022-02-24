@@ -10,9 +10,11 @@ class AccountMove(models.Model):
 
 	def _compute_advised_pricelist(self):
 		for rec in self:
-			partner = rec.partner_id.get_parent()
-			if partner.advised_pricelist_id:
-				rec.advised_pricelist_id = rec.partner_id.advised_pricelist_id.id
+			partner = rec.partner_id
+			parent = partner.parent_id
+			pricelist = partner.advised_pricelist_id or parent.advised_pricelist_id
+			if pricelist:
+				rec.advised_pricelist_id = pricelist.id
 			else:
 				rec.advised_pricelist_id = False
 

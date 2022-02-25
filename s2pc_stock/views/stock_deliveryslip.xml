@@ -1,330 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-	<template id="report_picking_document" name="Picking document">
-	  <t t-call="s2pc_base.external_layout">
-		<div class="page">
-		  <div class="row">
-			<div class="col-1">
-			  <img src="/s2pc_base/static/img/company_logo.jpg" style="max-height: 85px;"/>
-			</div>
-			<div class="col-5 picking-header" name="moto">
-			  Société des Peintures et des Produits Chimiques
-			</div>
-			<div class="col-6 picking-header">
-			  <span>
-				BON DE LIVRAISON / TRANSPORT
-			  </span>
-			  <br/>
-			  <span>
-				N°:
-			  </span>
-			  <span t-field="o.name"/>
-			</div>
-		  </div>
-		  <div class="row">
-			<div class="col-6">
-			  <span class="picking-title">Usine et siège:</span>
-			  <br/>
-			  <t t-if="o.company_id.street and o.company_id.zip and o.company_id.city">
-				<span t-esc="o.company_id.street + ', '+ o.company_id.zip + ' - ' + o.company_id.city"/>
-			  </t>
-			  <t t-else="">
-				<span>Route de l’aéroport, Salazamay, B.P 393 501 - Toamasina</span>
-			  </t>
-			  <br/>
-			  <span>Tel:</span>
-			  <t t-if="o.company_id.phone">
-				<span t-esc="o.company_id.phone"/>
-			  </t>
-			  <t t-if="o.company_id.phone and o.company_id.mobile">
-				<span>/</span>
-			  </t>
-			  <t t-if="o.company_id.mobile">
-				<span t-esc="o.company_id.mobile"/>
-			  </t>
-			  <t t-else="">
-				<span>+261 32 05 707 91 / +261 32 07 184 88</span>
-			  </t>
-			  <br/>
-			  <span>Mail:</span>
-			  <t t-if="o.company_id.email">
-				<span t-esc="o.company_id.email"/>
-			  </t>
-			  <t t-else="">
-				<span>commercial@s2pc.mg</span>
-			  </t>
-			  <!-- Unable to reach dynamic models, so set to static-->
-			  <br/>
-			  <span class="picking-title">Showroom Antananarivo:</span>
-			  <br/>
-			  <span>Bâtiment PRICE PLAZA 2, Andraharo</span>
-			  <br/>
-			  <span>Tel:</span>
-			  <span>+261 32 05 707 97</span>
-			  <br/>
-			  <span>Mail:</span>
-			  <span>commercial.tana@s2pc.mg</span>
-			  <br/>
-			  <span>Web:</span>
-			  <span>www.s2pc.mg</span>
-			  <br/>
-			  <!-- -->
-			  <span>STAT:</span>
-			  <t t-if="o.company_id.partner_id.STAT">
-				<span t-esc="o.company_id.partner_id.STAT"/>
-			  </t>
-			  <t t-else="">
-				<span>20221 31 1992 0 00021</span>
-			  </t>
-			  <br/>
-			  <span>NIF:</span>
-			  <t t-if="o.company_id.partner_id.vat">
-				<span t-esc="o.company_id.partner_id.vat"/>
-			  </t>
-			  <t t-else="">
-				<span>1000150227 du 01/04/2003</span>
-			  </t>
-			</div>
-			<div class="col-6" style="padding-top:50px">
-			  <div class="row">
-				<div class="col-4">
-				  <span>Date:</span>
-				</div>
-				<div class="col-8">
-				  <span t-field="o.scheduled_date" t-options='{"widget": "date"}'/>
-				</div>
-			  </div>
-			  <br/>
-			  <div class="row">
-				<div class="col-4">
-				  <t t-if="o.picking_type_code == 'incoming'">
-					<span>Fournisseur:</span>
-				  </t>
-				  <t t-else="o.picking_type_code != 'incoming'">
-					<span>Client:</span>
-				  </t>
-				</div>
-				<div class="col-8">
-				  <span t-esc="o.get_parent_partner().name" style="font-weight:bold;"/>
-				</div>
-			  </div>
-			  <div class="row">
-				<div class="col-4">
-				  <span>Adresse:</span>
-				</div>
-				<div class="col-8">
-				  <table class="table-address">
-					<tbody>
-					  <t t-if="o.partner_id.city">
-						<tr>
-						  <td>
-							<span t-esc="o.partner_id.city" style="font-weight:bold;" />
-						  </td>
-						</tr>
-					  </t>
-					  <t t-if="o.partner_id.street">
-						<tr>
-						  <td>
-							<span t-esc="o.partner_id.street" style="font-weight:bold;"/>
-						  </td>
-						</tr>
-					  </t>
-					  <tr>
-						<td>
-						  <span>NIF:</span>
-						  <span t-esc="o.get_parent_partner().vat"/>
-						</td>
-					  </tr>
-					  <tr>
-						<td>
-						  <span>STAT:</span>
-						  <span t-esc="o.get_parent_partner().STAT"/>
-						</td>
-					  </tr>
-					</tbody>
-				  </table>
-				</div>
-			  </div>
-			</div>
+    <data>
+        <template id="report_picking_document" name="Picking document">
+            <t t-call="s2pc_base.external_layout">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-1">
+                            <img src="/s2pc_base/static/img/company_logo.jpg" style="max-height: 85px;"/>
+                        </div>
+                        <div class="col-5 picking-header" name="moto">
+                            Société des Peintures et des Produits Chimiques
+                        </div>
+                        <div class="col-6 picking-header">
+                            <span t-if="o.picking_type_code == 'incoming'">BON DE RECEPTION  <span
+                                    t-field="o.name"/></span>
+                            <span t-if="o.picking_type_code == 'outgoing'">BON DE LIVRAISON  <span
+                                    t-field="o.name"/></span>
+                            <span t-if="o.picking_type_code == 'internal'">TRANSFERT INTERNE  <span
+                                    t-field="o.name"/></span>
 
-		  </div>
-		  <br/>
-		  <table class="picking-table">
-			<thead>
-			  <tr>
-				<th style="width:10%">
-				  <span>Ref.</span>
-				</th>
-				<th style="width:30%">
-				  <span>Désignation</span>
-				</th>
-				<th style="width:7%">
-				  <span>Qté</span>
-				</th>
-				<th style="width:10%">
-				  <span>Prix unit HT</span>
-				</th>
-				<th style="width:16%">
-				  <span>Montant</span>
-				</th>
-				<th style="width:16%">
-				  <span>Nbre colis</span>
-				</th>
-				<th style="width:16%">
-				  <span>Poids</span>
-				</th>
-			  </tr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="picking-title">Usine et siège:</span>
+                            <br/>
+                            <t t-if="o.company_id.street and o.company_id.zip and o.company_id.city">
+                                <span t-esc="o.company_id.street + ', '+ o.company_id.zip + ' - ' + o.company_id.city"/>
+                            </t>
+                            <t t-else="">
+                                <span>Route de l’aéroport, Salazamay, B.P 393 501 - Toamasina</span>
+                            </t>
+                            <br/>
+                            <span>Tel:</span>
+                            <t t-if="o.company_id.phone">
+                                <span t-esc="o.company_id.phone"/>
+                            </t>
+                            <t t-if="o.company_id.phone and o.company_id.mobile">
+                                <span>/</span>
+                            </t>
+                            <t t-if="o.company_id.mobile">
+                                <span t-esc="o.company_id.mobile"/>
+                            </t>
+                            <t t-else="">
+                                <span>+261 32 05 707 91 / +261 32 07 184 88</span>
+                            </t>
+                            <br/>
+                            <span>Mail:</span>
+                            <t t-if="o.company_id.email">
+                                <span t-esc="o.company_id.email"/>
+                            </t>
+                            <t t-else="">
+                                <span>commercial@s2pc.mg</span>
+                            </t>
+                            <!-- Unable to reach dynamic models, so set to static-->
+                            <br/>
+                            <span class="picking-title">Showroom Antananarivo:</span>
+                            <br/>
+                            <span>Bâtiment PRICE PLAZA 2, Andraharo</span>
+                            <br/>
+                            <span>Tel:</span>
+                            <span>+261 32 05 707 97</span>
+                            <br/>
+                            <span>Mail:</span>
+                            <span>commercial.tana@s2pc.mg</span>
+                            <br/>
+                            <span>Web:</span>
+                            <span>www.s2pc.mg</span>
+                            <br/>
+                            <!-- -->
+                            <span>STAT:</span>
+                            <t t-if="o.company_id.partner_id.STAT">
+                                <span t-esc="o.company_id.partner_id.STAT"/>
+                            </t>
+                            <t t-else="">
+                                <span>20221 31 1992 0 00021</span>
+                            </t>
+                            <br/>
+                            <span>NIF:</span>
+                            <t t-if="o.company_id.partner_id.vat">
+                                <span t-esc="o.company_id.partner_id.vat"/>
+                            </t>
+                            <t t-else="">
+                                <span>1000150227 du 01/04/2003</span>
+                            </t>
+                        </div>
+                        <div class="col-6" style="padding-top:50px">
+                            <div class="row">
+                                <div class="col-4">
+                                    <span>Date:</span>
+                                </div>
+                                <div class="col-8">
+                                    <span t-field="o.scheduled_date" t-options='{"widget": "date"}'/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-4">
+                                    <t t-if="o.picking_type_code == 'incoming'">
+                                        <span>Fournisseur:</span>
+                                    </t>
+                                    <t t-else="o.picking_type_code != 'incoming'">
+                                        <span>Client:</span>
+                                    </t>
+                                </div>
+                                <div class="col-8">
+                                    <span t-esc="o.get_parent_partner().name" style="font-weight:bold;"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <span>Adresse:</span>
+                                </div>
+                                <div class="col-8">
+                                    <table class="table-address">
+                                        <tbody>
+                                            <t t-if="o.partner_id.city">
+                                                <tr>
+                                                    <td>
+                                                        <span t-esc="o.partner_id.city" style="font-weight:bold;"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <t t-if="o.partner_id.street">
+                                                <tr>
+                                                    <td>
+                                                        <span t-esc="o.partner_id.street" style="font-weight:bold;"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <tr>
+                                                <td>
+                                                    <span>NIF:</span>
+                                                    <span t-esc="o.get_parent_partner().vat"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>STAT:</span>
+                                                    <span t-esc="o.get_parent_partner().STAT"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-			</thead>
-			<tbody class="picking-body">
-			  <t t-if="len(o.move_ids_without_package) &lt; 12" t-set="line_range" t-value="12"/>
-			  <t t-else="not len(o.move_ids_without_package) &lt; 12" t-set="line_range"
-				 t-value="len(o.move_ids_without_package)"/>
-			  <t t-foreach="range(int(line_range))" t-as="r">
-				<tr t-if="int(r) &lt; len(o.move_ids_without_package)">
+                    </div>
+                    <br/>
+                    <table class="picking-table">
+                        <thead>
+                            <tr>
+                                <th style="width:10%">
+                                    <span>Ref.</span>
+                                </th>
+                                <th style="width:30%">
+                                    <span>Désignation</span>
+                                </th>
+                                <th style="width:7%">
+                                    <span>Qté</span>
+                                </th>
+                                <th style="width:10%">
+                                    <span>Prix unit HT</span>
+                                </th>
+                                <th style="width:16%">
+                                    <span>Montant</span>
+                                </th>
+                                <th style="width:16%">
+                                    <span>Nbre colis</span>
+                                </th>
+                                <th style="width:16%">
+                                    <span>Poids</span>
+                                </th>
+                            </tr>
 
-				  <td t-esc="o.move_ids_without_package[r].product_id.default_code or ''"/>
-				  <td t-esc="o.move_ids_without_package[r].product_id.name"/>
-				  <td t-esc="o.move_ids_without_package[r].product_uom_qty" class="text-right"/>
-				  <td t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('price_unit', '')"
-					  t-options='{"widget": "float", "precision": 2}' class="text-right"/>
-				  <td
-				  t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('price_subtotal', '')"
-				  t-options='{"widget": "float", "precision": 2}' class="text-right"/>
-				  <td
-				  t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('package_count', '') or ''"
-				  class="text-right"/>
-				  <td t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('weight', '') or ''"
-					  class="text-right"/>
-				</tr>
-				<tr t-if="not int(r) &lt; len(o.move_ids_without_package)">
-				  <!-- Fill blank row since height style doesn't work in PDF report -->
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				  <td>
-					<br/>
-				  </td>
-				</tr>
+                        </thead>
+                        <tbody class="picking-body">
+                            <t t-if="len(o.move_ids_without_package) &lt; 12" t-set="line_range" t-value="12"/>
+                            <t t-else="not len(o.move_ids_without_package) &lt; 12" t-set="line_range"
+                               t-value="len(o.move_ids_without_package)"/>
+                            <t t-foreach="range(int(line_range))" t-as="r">
+                                <tr t-if="int(r) &lt; len(o.move_ids_without_package)">
 
-			  </t>
-			</tbody>
-			<tbody class="invoice-total">
-			  <tr>
-				<td colspan="4" class="text-right">
-				  <span style="text-align: left">TOTAL (Montant | Nbr colis | Pois kg)</span>
-				</td>
-				<td class="text-right allow_border">
-				  <span t-esc="o.get_moves_report_values().get('total_amount', '')"/>
-				</td>
-				<td class="text-right allow_border">
-				  <span t-esc="o.get_moves_report_values().get('total_package_count', '')"/>
-				</td>
-				<td class="text-right allow_border">
-				  <span t-esc="o.get_moves_report_values().get('total_weight', '')"/>
-				</td>
+                                    <td t-esc="o.move_ids_without_package[r].product_id.default_code or ''"/>
+                                    <td t-esc="o.move_ids_without_package[r].product_id.name"/>
+                                    <td t-esc="o.move_ids_without_package[r].product_uom_qty" class="text-right"/>
+                                    <td t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('price_unit', '')"
+                                        t-options='{"widget": "float", "precision": 2}' class="text-right"/>
+                                    <td
+                                            t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('price_subtotal', '')"
+                                            t-options='{"widget": "float", "precision": 2}' class="text-right"/>
+                                    <td
+                                            t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('package_count', '') or ''"
+                                            class="text-right"/>
+                                    <td t-esc="o.get_moves_report_values().get(o.move_ids_without_package[r], {}).get('weight', '') or ''"
+                                        class="text-right"/>
+                                </tr>
+                                <tr t-if="not int(r) &lt; len(o.move_ids_without_package)">
+                                    <!-- Fill blank row since height style doesn't work in PDF report -->
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                </tr>
 
-			  </tr>
-			</tbody>
+                            </t>
+                        </tbody>
+                        <tbody class="invoice-total">
+                            <tr>
+                                <td colspan="4" class="text-right">
+                                    <span style="text-align: left">TOTAL (Montant | Nbr colis | Pois kg)</span>
+                                </td>
+                                <td class="text-right allow_border">
+                                    <span t-esc="o.get_moves_report_values().get('total_amount', '')"/>
+                                </td>
+                                <td class="text-right allow_border">
+                                    <span t-esc="o.get_moves_report_values().get('total_package_count', '')"/>
+                                </td>
+                                <td class="text-right allow_border">
+                                    <span t-esc="o.get_moves_report_values().get('total_weight', '')"/>
+                                </td>
 
-		  </table>
-		  <br/>
-		  <div class="row">
-			<div class="col-12">
-			  <span>VERIFICATION CONFORMITE</span>
-			</div>
-		  </div>
-		  <table class="conform-table">
-			<tbody>
-			  <tr>
-				<td rowspan="3">Désignation</td>
-				<td colspan="6">Etat emballages</td>
-				<td colspan="6">Conformité emballages</td>
-			  </tr>
-			  <tr>
-				<td colspan="2">Seau/Sachet</td>
-				<td colspan="2">Couvercle</td>
-				<td colspan="2">Carton</td>
-				<td colspan="2"># Lot</td>
-				<td colspan="2">Etiquette</td>
-			  </tr>
-			  <tr>
-				<td class="check-conform">Bon</td>
-				<td class="check-conform">Mauvais</td>
-				<td class="check-conform">Bon</td>
-				<td class="check-conform">Mauvais</td>
-				<td class="check-conform">Bon</td>
-				<td class="check-conform">Mauvais</td>
-				<td class="check-conform">OUI</td>
-				<td class="check-conform">NON</td>
-				<td class="check-conform">OUI</td>
-				<td class="check-conform">NON</td>
-			  </tr>
-			  <tr>
-				<t t-foreach="o.move_ids_without_package" t-as="line">
-				  <tr>
-					<td t-esc="line.product_id.name" style="text-align: left"></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				  </tr>
-				</t>
-			  </tr>
-			</tbody>
-		  </table>
-		  <br/>
-		  <div class="row" style="margin-bottom:100px">
-			<div class="col-5">S2PC</div>
-			<div class="col-3">
-			  <t t-if="o.picking_type_code == 'incoming'">
-				<span>Fournisseur:</span>
-			  </t>
-			  <t t-else="o.picking_type_code != 'incoming'">
-				<span>Client:</span>
-			  </t>
-			</div>
-			<div class="col-3">Date de livraison:</div>
-		  </div>
-		</div>
-	  </t>
-	</template>
+                            </tr>
+                        </tbody>
 
-	<template id="s2pc_report_deliveryslip" inherit_id="stock.report_deliveryslip">
-	  <xpath expr="//t[@t-foreach='docs']" position="replace">
-		<t t-call="web.html_container">
-		  <t t-set="data_report_margin_top" t-value="1"/>
-		  <t t-set="data_report_header_spacing" t-value="1"/>
-		  <t t-foreach="docs" t-as="o">
-			<t t-call="s2pc_stock.report_picking_document" t-lang="o.partner_id.lang"/>
-		  </t>
-		</t>
+                    </table>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <span>VERIFICATION CONFORMITE</span>
+                        </div>
+                    </div>
+                    <table class="conform-table">
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">Désignation</td>
+                                <td colspan="6">Etat emballages</td>
+                                <td colspan="6">Conformité emballages</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Seau/Sachet</td>
+                                <td colspan="2">Couvercle</td>
+                                <td colspan="2">Carton</td>
+                                <td colspan="2"># Lot</td>
+                                <td colspan="2">Etiquette</td>
+                            </tr>
+                            <tr>
+                                <td class="check-conform">Bon</td>
+                                <td class="check-conform">Mauvais</td>
+                                <td class="check-conform">Bon</td>
+                                <td class="check-conform">Mauvais</td>
+                                <td class="check-conform">Bon</td>
+                                <td class="check-conform">Mauvais</td>
+                                <td class="check-conform">OUI</td>
+                                <td class="check-conform">NON</td>
+                                <td class="check-conform">OUI</td>
+                                <td class="check-conform">NON</td>
+                            </tr>
+                            <tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <tr>
+                                        <td t-esc="line.product_id.name" style="text-align: left"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <div class="row" style="margin-bottom:100px">
+                        <div class="col-5">S2PC</div>
+                        <div class="col-3">
+                            <t t-if="o.picking_type_code == 'incoming'">
+                                <span>Fournisseur:</span>
+                            </t>
+                            <t t-else="o.picking_type_code != 'incoming'">
+                                <span>Client:</span>
+                            </t>
+                        </div>
+                        <div class="col-3">Date de livraison:</div>
+                    </div>
+                </div>
+            </t>
+        </template>
 
-	  </xpath>
+        <template id="s2pc_report_deliveryslip" inherit_id="stock.report_deliveryslip">
+            <xpath expr="//t[@t-foreach='docs']" position="replace">
+                <t t-call="web.html_container">
+                    <t t-set="data_report_margin_top" t-value="1"/>
+                    <t t-set="data_report_header_spacing" t-value="1"/>
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="s2pc_stock.report_picking_document" t-lang="o.partner_id.lang"/>
+                    </t>
+                </t>
 
-	</template>
+            </xpath>
 
-  </data>
+        </template>
+
+    </data>
 </odoo>

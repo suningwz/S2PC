@@ -15,11 +15,35 @@
             <field name="action" eval="False"/>
             <field name="active" eval="True"/>
             <field name="groups_id"
-                   eval="[(6, 0, [ref('hr.group_hr_manager'), ref('hr.group_hr_user'), ref('s2pc_securite.group_menu_employee_access')])]"/>
+                   eval="[(6, 0, [ref('base.group_erp_manager'), ref('hr.group_hr_user'), ref('s2pc_securite.group_menu_employee_access')])]"/>
             <field name="name">Employees</field>
             <field name="parent_id" eval="False"/>
             <field name="sequence">185</field>
             <field name="web_icon">hr,static/description/icon.png</field>
         </record>
+
+        <record id="mass_mailing.mass_mailing_menu_root" model="ir.ui.menu">
+            <field name="action" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="groups_id"
+                   eval="[(6, 0, [ref('base.group_erp_manager'), ref('mass_mailing.group_mass_mailing_user'), ref('s2pc_securite.group_menu_email_marketing_access')])]"/>
+            <field name="name">Employees</field>
+            <field name="parent_id" eval="False"/>
+            <field name="sequence">185</field>
+            <field name="web_icon">hr,static/description/icon.png</field>
+        </record>
+
+        <record id="maintenance.menu_maintenance_title" model="ir.ui.menu">
+            <field name="action" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="groups_id"
+                   eval="[(6, 0, [ref('base.group_erp_manager'), ref('maintenance.group_equipment_manager'), ref('s2pc_securite.group_menu_maintenance_access')])]"/>
+            <field name="name">Employees</field>
+            <field name="parent_id" eval="False"/>
+            <field name="sequence">185</field>
+            <field name="web_icon">hr,static/description/icon.png</field>
+        </record>
+
+
     </data>
 </odoo>

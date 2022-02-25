@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 's2pc_base', 's2pc_product', 'sale', 'sales_team', 'hr', 'purchase'],
+    'depends': ['base', 's2pc_base', 's2pc_product', 'sale', 'sales_team', 'hr', 'purchase', 'mass_mailing', 'maintenance'],
 
     # always loaded
     'data': [

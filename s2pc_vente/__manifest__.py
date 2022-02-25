@@ -27,6 +27,7 @@
         # 'security/ir.model.access.csv',
         'views/hide_report.xml',
         'views/pro_format_report.xml',
+        'views/view_order_form_inherit.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

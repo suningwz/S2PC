@@ -26,8 +26,8 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/purchase_order.xml',
-        'views/hide_report.xml',
         'views/report_purchasequotation_document_inherit.xml',
+        'views/report_purchaseorder_document_inherit.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

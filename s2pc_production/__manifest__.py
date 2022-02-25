@@ -32,6 +32,15 @@
         'views/menu_views.xml',
     ],
     # only loaded in demonstration mode
+    'assets': {
+        'web.assets_backend': [
+            's2pc_production/static/src/js/quality_widget.js',
+        ],
+
+        'web.assets_qweb': [
+            's2pc_production/static/src/xml/*',
+        ],
+    },
     'demo': [
         'demo/demo.xml',
     ],

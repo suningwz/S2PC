@@ -35,9 +35,9 @@
 
         # views
         'views/hr_leave_team_views.xml',
-        'views/hr_employee_views.xml',
-        'views/menu_views.xml',
 
+        'views/menu_views.xml',
+        'views/hr_employee_views_val_inherit.xml',
 
         'views/hr_employee.xml',
     ],

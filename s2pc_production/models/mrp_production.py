@@ -7,7 +7,7 @@ from odoo.tools import date_utils
 
 
 class ModelName(models.Model):
-<<<<<<< HEAD
+
     _inherit = 'mrp.production'
     mrp_team = fields.Many2one('mrp.team', string="Equipe de production")
     current_date = fields.Date(string="To days date", default=datetime.now())
@@ -56,11 +56,8 @@ class ModelName(models.Model):
         for rec in self.move_raw_ids:
             print(rec.bom_line_id.name)
         return True
-=======
-	_inherit = 'mrp.production'
-	mrp_team = fields.Many2one('mrp.team', string="Equipe de production")
-	current_date = fields.Date(string="To days date", default=datetime.now())
-	date_planned_start_related = fields.Datetime(string="infos date prevue", related="date_planned_start", readonly=True)
+
+
 	quality_widget = fields.Text('Quality widget', compute='_compute_quality_widget')
 
 	def get_selection_label(self, object, field_name, field_value):
@@ -125,4 +122,4 @@ class ModelName(models.Model):
 					alert_vals.update(description=alert.description)
 					quality_vals['work_alert']['Autres alertes'].append(alert_vals)
 			production.quality_widget = json.dumps(quality_vals, default=date_utils.json_default)
->>>>>>> magnus_branch
+

@@ -28,10 +28,20 @@
         'views/mrp_production.xml',
         'views/mrp_team.xml',
         'views/mrp_production_views.xml',
-
+        'views/mrp_bom_views.xml',
         'views/menu_views.xml',
     ],
     # only loaded in demonstration mode
+    'assets': {
+        'web.assets_backend': [
+            's2pc_production/static/src/js/quality_widget.js',
+            's2pc_production/static/src/js/mrp_one2many.js',
+        ],
+
+        'web.assets_qweb': [
+            's2pc_production/static/src/xml/*',
+        ],
+    },
     'demo': [
         'demo/demo.xml',
     ],

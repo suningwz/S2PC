@@ -1,37 +1,47 @@
 <odoo>
-    <data>
-        <record id="mrp_production_tree_view_inherited" model="ir.ui.view">
-            <field name="name">mrp.mrp_production_tree_view.inherited</field>
-            <field name="model">mrp.production</field>
-            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
-            <field name="arch" type="xml">
+  <data>
+	<record id="mrp_production_tree_view_inherited" model="ir.ui.view">
+	  <field name="name">mrp.mrp_production_tree_view.inherited</field>
+	  <field name="model">mrp.production</field>
+	  <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+	  <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='state']" position="after">
-                    <field name="workorder_ids" widget="many2many_tags" domain="[('state','=','progress')]"/>
-                </xpath>
-                <xpath expr="//field[@name='date_planned_start']" position="replace">
-                    <field name="date_planned_start" readonly="1" optional="show" widget="date" decoration-danger="date_planned_start &lt; current_date" decoration-warning="date_planned_start &gt; current_date" decoration-success="date_planned_start == current_date"/>
-                </xpath>
-                <xpath expr="//field[@name='date_planned_start']" position="after">
-                    <field name="date_planned_start_related" widget="remaining_days"/>
-                </xpath>
-            </field>
-        </record>
-        <!-- Inherit Form View to Modify it -->
-        <record id="mrp_production_form_view_inherited" model="ir.ui.view">
-            <field name="name">mrp.mrp_production_form_view.inherited</field>
-            <field name="model">mrp.production</field>
-            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
-            <field name="arch" type="xml">
+		<xpath expr="//field[@name='state']" position="after">
+		  <field name="workorder_ids" widget="many2many_tags" domain="[('state','=','progress')]"/>
+		</xpath>
+		<xpath expr="//field[@name='date_planned_start']" position="replace">
+		  <field name="date_planned_start" readonly="1" optional="show" widget="date"
+				 decoration-danger="date_planned_start &lt; current_date"
+				 decoration-warning="date_planned_start &gt; current_date"
+				 decoration-success="date_planned_start == current_date"/>
+		</xpath>
+		<xpath expr="//field[@name='date_planned_start']" position="after">
+		  <field name="date_planned_start_related" widget="remaining_days"/>
+		</xpath>
+	  </field>
+	</record>
+	<!-- Inherit Form View to Modify it -->
+	<record id="mrp_production_form_view_inherited" model="ir.ui.view">
+	  <field name="name">mrp.mrp_production_form_view.inherited</field>
+	  <field name="model">mrp.production</field>
+	  <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+	  <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='user_id']" position="after">
-                    <!-- Add your fields or attributes here -->
-                    <field name="mrp_team"/>
-                </xpath>
+		<xpath expr="//field[@name='user_id']" position="after">
+		  <!-- Add your fields or attributes here -->
+		  <field name="mrp_team"/>
+		</xpath>
+		<xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
+		  <field name="restricted_workorder_id" invisible="1"/>
+		</xpath>
+		<xpath expr="//field[@name='move_raw_ids']" position="attributes">
+		  <attribute name="widget">mrp_one2many</attribute>
+		  <attribute name="options">{'group': 'restricted_workorder_id', 'referred': 'workorder_ids'}</attribute>
+		</xpath>
 
-            </field>
-        </record>
+	  </field>
+	</record>
 
 
-    </data>
+  </data>
 </odoo>

@@ -6,7 +6,7 @@ from datetime import timedelta, datetime
 from odoo.tools import date_utils
 
 
-class ModelName(models.Model):
+class MrpProduction(models.Model):
 	_inherit = 'mrp.production'
 	mrp_team = fields.Many2one('mrp.team', string="Equipe de production")
 	current_date = fields.Date(string="To days date", default=datetime.now())
@@ -75,3 +75,28 @@ class ModelName(models.Model):
 					alert_vals.update(description=alert.description)
 					quality_vals['work_alert']['Autres alertes'].append(alert_vals)
 			production.quality_widget = json.dumps(quality_vals, default=date_utils.json_default)
+
+	def _create_workorder(self):
+		super(MrpProduction, self)._create_workorder()
+		for production in self:
+			for workorder in production.workorder_ids:
+				moves = production.move_raw_ids.filtered(lambda move: move.bom_line_id.restricted_operation_id == workorder.operation_id)
+				for move in moves:
+					move.update({'restricted_workorder_id': workorder.id})
+
+	def update_restricted_raw_operation(self):
+		for production in self:
+			for workorder in production.workorder_ids:
+				moves = production.move_raw_ids.filtered(lambda move: move.bom_line_id.restricted_operation_id == workorder.operation_id)
+				moves.write({'restricted_workorder_id': workorder.id})
+		return True
+
+	@api.model
+	def create(self, vals):
+		res = super(MrpProduction, self).create(vals)
+		self.update_restricted_raw_operation()
+		return res
+
+	def write(self, vals):
+		super(MrpProduction, self).write(vals)
+		self.update_restricted_raw_operation()

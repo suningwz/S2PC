@@ -1,9 +1,18 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="hr_appraisal_goal_department_view_form" model="ir.ui.view">
-            <field name="name">hr.appraisal.goal.department.view.form</field>
-            <field name="model">hr.appraisal.goal.department</field>
+
+
+        <record id="action_hr_appraisal_goal_society" model="ir.actions.act_window">
+            <field name="name">Objectifs par Société</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.appraisal.goal.society</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <record id="hr_appraisal_goal_society_view_form" model="ir.ui.view">
+            <field name="name">hr.appraisal.goal.society.view.form</field>
+            <field name="model">hr.appraisal.goal.society</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -20,7 +29,7 @@
                         </div>
                         <group>
                             <group>
-                                <field name="department_id"/>
+                                <field name="society_id"/>
                                 <field name="progression" class="pr-3" widget="selection_badge"/>
                             </group>
                             <group>
@@ -45,24 +54,23 @@
             </field>
         </record>
 
-        <record id="hr_appraisal_goal_view_tree" model="ir.ui.view">
-            <field name="name">hr.appraisal.goal.department.view.tree</field>
-            <field name="model">hr.appraisal.goal.department</field>
+        <record id="hr_appraisal_goal_society_view_tree" model="ir.ui.view">
+            <field name="name">hr.appraisal.goal.society.view.tree</field>
+            <field name="model">hr.appraisal.goal.society</field>
             <field name="arch" type="xml">
                 <tree sample="1" class="o_goal_list">
                     <field name="name" class="font-weight-bold"/>
                     <field name="deadline" widget="remaining_days"/>
                     <field name="activity_ids" widget="list_activity"/>
                     <field name="progression" widget="badge" decoration-success="progression == '100'"/>
-                    <field name="department_id"/>
+                    <field name="society_id"/>
                     <field name="manager_id" widget="many2one_avatar_employee"/>
                 </tree>
             </field>
         </record>
-
-        <record id="hr_appraisal_goal_view_kanban" model="ir.ui.view">
-            <field name="name">hr.appraisal.goal.view.department.kanban</field>
-            <field name="model">hr.appraisal.goal.department</field>
+        <record id="hr_appraisal_goal_society_view_kanban" model="ir.ui.view">
+            <field name="name">hr.appraisal.goal.view.society.kanban</field>
+            <field name="model">hr.appraisal.goal.society</field>
             <field name="arch" type="xml">
                 <kanban quick_create="false" class="o_hr_employee_kanban" js_class="appraisal_kanban" sample="1">
                     <field name="description"/>
@@ -105,7 +113,7 @@
                                         <field name="deadline" widget="remaining_days"/>
                                     </div>
                                     <div class="oe_kanban_bottom_right">
-                                        <field name="department_id"/>
+                                        <field name="society_id"/>
                                     </div>
                                 </div>
                                 <div class="oe_clear"></div>
@@ -115,13 +123,12 @@
                 </kanban>
             </field>
         </record>
-
-        <record id="hr_appraisal_goal_department_view_search" model="ir.ui.view">
-            <field name="name">hr.appraisal.goal.department.view.search</field>
-            <field name="model">hr.appraisal.goal.department</field>
+        <record id="hr_appraisal_goal_society_view_search" model="ir.ui.view">
+            <field name="name">hr.appraisal.goal.society.view.search</field>
+            <field name="model">hr.appraisal.goal.society</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="department_id"/>
+                    <field name="society_id"/>
                     <field name="manager_id"/>
                     <separator/>
                     <filter string="Dernier" name="filter_late"
@@ -131,32 +138,11 @@
             </field>
         </record>
 
-
-        <record id="action_hr_appraisal_goal_department" model="ir.actions.act_window">
-            <field name="name">Objectifs par departements</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hr.appraisal.goal.department</field>
-            <field name="view_mode">kanban,tree,form</field>
-        </record>
-
-        <menuitem name="Objectifs"
-                  parent="hr_appraisal.menu_hr_appraisal_root"
-                  id="menu_hr_appraisal_goal_root"
+        <menuitem name="Objectifs par Sociétés"
+                  parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
+                  id="menu_hr_appraisal_goal_society"
+                  action="action_hr_appraisal_goal_society"
                   groups="hr_appraisal.group_hr_appraisal_manager"
                   sequence="3"/>
-
-        <menuitem name="Objectifs par départements"
-                  parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
-                  id="menu_hr_appraisal_goal_departement"
-                  action="action_hr_appraisal_goal_department"
-                  groups="hr_appraisal.group_hr_appraisal_manager"
-                  sequence="2"/>
-
-        <menuitem
-                parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
-                name="Objectifs personnels"
-                id="hr_appraisal.menu_hr_appraisal_goal"
-                action="hr_appraisal.action_hr_appraisal_goal"
-                sequence="1"/>
     </data>
 </odoo>

@@ -206,8 +206,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p t-if="o.net_wage &gt;= 0">A payer le <b><span t-field="o.employee_id.bank_account_id"/></b>
-                            of <i><span t-field="o.employee_id"/></i>: <span t-field="o.net_wage"/></p>
+                        <p t-if="o.net_wage &gt;= 0">A payer <b><span t-field="o.employee_id.bank_account_id"/></b>
+                            pour <i><span t-field="o.employee_id"/></i> : <span t-field="o.net_wage"/></p>
                         <p t-if="o.net_wage &lt; 0">Le montant net sera récupéré sur la première rémunération positive
                             établie par la suite.</p>
 

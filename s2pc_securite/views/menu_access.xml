@@ -30,7 +30,7 @@
             <field name="name">Employees</field>
             <field name="parent_id" eval="False"/>
             <field name="sequence">185</field>
-            <field name="web_icon">hr,static/description/icon.png</field>
+            <field name="web_icon">mass_mailing,static/description/icon.png</field>
         </record>
 
         <record id="maintenance.menu_maintenance_title" model="ir.ui.menu">
@@ -41,7 +41,7 @@
             <field name="name">Employees</field>
             <field name="parent_id" eval="False"/>
             <field name="sequence">185</field>
-            <field name="web_icon">hr,static/description/icon.png</field>
+            <field name="web_icon">maintenance,static/description/icon.png</field>
         </record>
 
 

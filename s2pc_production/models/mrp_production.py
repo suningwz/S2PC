@@ -76,14 +76,6 @@ class MrpProduction(models.Model):
 					quality_vals['work_alert']['Autres alertes'].append(alert_vals)
 			production.quality_widget = json.dumps(quality_vals, default=date_utils.json_default)
 
-	def _create_workorder(self):
-		super(MrpProduction, self)._create_workorder()
-		for production in self:
-			for workorder in production.workorder_ids:
-				moves = production.move_raw_ids.filtered(lambda move: move.bom_line_id.restricted_operation_id == workorder.operation_id)
-				for move in moves:
-					move.update({'restricted_workorder_id': workorder.id})
-
 	def update_restricted_raw_operation(self):
 		for production in self:
 			for workorder in production.workorder_ids:
@@ -96,7 +88,3 @@ class MrpProduction(models.Model):
 		res = super(MrpProduction, self).create(vals)
 		self.update_restricted_raw_operation()
 		return res
-
-	def write(self, vals):
-		super(MrpProduction, self).write(vals)
-		self.update_restricted_raw_operation()

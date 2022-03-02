@@ -140,5 +140,5 @@ class MrpProduction(models.Model):
     @api.model
     def create(self, vals):
         res = super(MrpProduction, self).create(vals)
-        self.update_restricted_raw_operation()
+        res.update_restricted_raw_operation()
         return res

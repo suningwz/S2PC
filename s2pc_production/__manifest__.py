@@ -33,6 +33,7 @@
         'views/mrp_production_report.xml',
         'views/mrp_production_template.xml',
         'views/mrp_workcenter_views.xml',
+
     ],
     # only loaded in demonstration mode
     'assets': {

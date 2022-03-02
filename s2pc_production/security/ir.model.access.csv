@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acl_mrp_team,mrp.team_default,model_mrp_team,base.group_user,1,1,1,1
+acl_mrp_comsumption,mrp.consumption.warning.model_default,model_mrp_consumption_warning_model,mrp.group_mrp_manager,1,1,1,1
+acl_mrp_consumption_line,mrp.consumption.warning.line.model_default,model_mrp_consumption_warning_line_model,base.group_user,1,1,1,1
+acl_mrp_consumption_record,mrp.consumption_default,model_mrp_consumption_record,base.group_user,1,1,1,1

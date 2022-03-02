@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+	<record id="report_mrp_production_action" model="ir.actions.report">
+	  <field name="name">Fiche de Fabrication</field>
+	  <field name="model">mrp.production</field>
+	  <field name="report_type">qweb-pdf</field>
+	  <field name="report_name">s2pc_production.report_mrp_production</field>
+	  <field name="report_file">s2pc_production.report_mrp_production</field>
+	  <field name="print_report_name">(object.name)</field>
+	  <field name="attachment">(object.state in ['done','to_close']) and (object.name +'.pdf')</field>
+	  <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+	  <field name="binding_type">report</field>
+	</record>
+  </data>
+</odoo>
+

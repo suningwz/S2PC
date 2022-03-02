@@ -1,0 +1,49 @@
+.mrp-table-title{
+    width: 100%;
+}
+.mrp-table-title  td {
+    border: white;
+}
+.mrp-infos {
+    border: 2px solid aliceblue;
+    border-radius: 20px;
+}
+.mrp-infos td{
+    height: 30px
+}
+.mrp-title{
+    color: black;
+    font-weight: 700;
+    text-decoration: underline;
+}
+.operation-title{
+    background: aliceblue;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+.sub-title{
+    font-style: italic;
+    text-decoration: underline;
+    padding-left: 45px;
+
+}
+.mrp-table {
+    border : 1px solid #dee2e6;
+    width: 100%;
+}
+.mrp-table th, td{
+    height: 30px;
+    width: 85px;
+    padding-left: 5px;
+
+}
+.mrp-table span{
+    padding-left: 2px
+}
+.mrp-background{
+    background: aliceblue;
+    text-align: center;
+    border: 1px solid #dee2e6;
+
+}

@@ -15,8 +15,35 @@ class MrpProduction(models.Model):
     quality_widget = fields.Text('Quality widget', compute='_compute_quality_widget')
     workorder_ids_state = fields.Char(string="Opération en cours", compute="get_state_workoderids")
 
-    # consumption_record_ids = fields.One2many('mrp.consumption.record', 'mrp_production_id',
-    #                                          string='Liste de consommation')
+    consumption_record_ids = fields.One2many('mrp.consumption.record', 'mrp_production_id',
+                                             string='Liste de consommation')
+
+    def _action_generate_consumption_wizard(self, consumption_issues):
+        ctx = self.env.context.copy()
+        lines = []
+        for order, product_id, consumed_qty, expected_qty in consumption_issues:
+            lines.append((0, 0, {
+                'mrp_production_id': order.id,
+                'product_id': product_id.id,
+                'consumption': order.consumption,
+                'product_uom_id': product_id.uom_id.id,
+                'product_consumed_qty_uom': consumed_qty,
+                'product_expected_qty_uom': expected_qty
+            }))
+
+            self.env['mrp.consumption.record'].create({
+                'mrp_production_id': order.id,
+                'product_id': product_id.id,
+                'consumption': order.consumption,
+                'product_uom_id': product_id.uom_id.id,
+                'product_consumed_qty_uom': consumed_qty,
+                'product_expected_qty_uom': expected_qty
+            })
+
+        ctx.update({'default_mrp_production_ids': self.ids, 'default_mrp_consumption_warning_line_ids': lines})
+        action = self.env["ir.actions.actions"]._for_xml_id("mrp.action_mrp_consumption_warning")
+        action['context'] = ctx
+        return action
 
     @api.depends('workorder_ids')
     def get_state_workoderids(self):

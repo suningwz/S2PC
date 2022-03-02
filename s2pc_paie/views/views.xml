@@ -60,8 +60,6 @@
 
                             </div>
                         </div>
-
-
                         <!--<h2 t-field="o.name"/>-->
                         <t t-set="is_invalid" t-value="o._is_invalid()"/>
                         <br/>
@@ -210,13 +208,9 @@
                             pour <i><span t-field="o.employee_id"/></i> : <span t-field="o.net_wage"/></p>
                         <p t-if="o.net_wage &lt; 0">Le montant net sera récupéré sur la première rémunération positive
                             établie par la suite.</p>
-
                     </div>
                 </t>
-
-
             </xpath>
-
         </template>
     </data>
 </odoo>

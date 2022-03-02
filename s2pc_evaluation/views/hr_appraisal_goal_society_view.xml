@@ -138,7 +138,7 @@
             </field>
         </record>
 
-        <menuitem name="Objectifs par Sociétés"
+        <menuitem name="Objectifs par Société"
                   parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
                   id="menu_hr_appraisal_goal_society"
                   action="action_hr_appraisal_goal_society"

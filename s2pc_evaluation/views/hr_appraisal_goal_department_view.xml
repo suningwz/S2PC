@@ -145,7 +145,7 @@
                   groups="hr_appraisal.group_hr_appraisal_manager"
                   sequence="3"/>
 
-        <menuitem name="Objectifs par départements"
+        <menuitem name="Objectifs par département"
                   parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
                   id="menu_hr_appraisal_goal_departement"
                   action="action_hr_appraisal_goal_department"
@@ -154,7 +154,7 @@
 
         <menuitem
                 parent="s2pc_evaluation.menu_hr_appraisal_goal_root"
-                name="Objectifs personnels"
+                name="Objectifs individuels"
                 id="hr_appraisal.menu_hr_appraisal_goal"
                 action="hr_appraisal.action_hr_appraisal_goal"
                 sequence="1"/>

@@ -21,6 +21,7 @@
                         <group>
                             <group>
                                 <field name="department_id"/>
+                                <field name="society_goal_id"/>
                                 <field name="progression" class="pr-3" widget="selection_badge"/>
                             </group>
                             <group>

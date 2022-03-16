@@ -23,6 +23,10 @@ class HrAppraisalDepartement(models.Model):
     ], string="Progression", default="0", required=True)
     description = fields.Html()
     deadline = fields.Date(string="Date limite")
+    society_goal_id = fields.Many2one(
+        comodel_name='hr.appraisal.goal.society',
+        string='Objectif de la société associé',
+        required=True)
 
     def action_confirm(self):
         self.write({'progression': '100'})

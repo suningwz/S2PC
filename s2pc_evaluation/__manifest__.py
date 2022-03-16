@@ -25,6 +25,7 @@
         'security/ir.model.access.csv',
         'views/hr_appraisal_goal_department_view.xml',
         'views/hr_appraisal_goal_society_view.xml',
+        'views/hr_appraisal_goal_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

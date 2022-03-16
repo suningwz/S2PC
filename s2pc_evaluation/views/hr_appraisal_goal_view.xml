@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_appraisal_goal_view_form_inherited" model="ir.ui.view">
+            <field name="name">hr_appraisal.hr_appraisal_goal_view_form.inherited</field>
+            <field name="model">hr.appraisal.goal</field>
+            <field name="inherit_id" ref="hr_appraisal.hr_appraisal_goal_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="departement_goal_id"/>
+                    <field name="society_goal_id"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -6,11 +6,23 @@
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
+                <field name="children" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
                 <field name="work_location_id" position="after">
                     <field name="cnaps_number"/>
                 </field>
                 <field name="lang" position="replace">
                     <field name="langue"/>
+                </field>
+                <field name="certificate" position="replace">
+                    <field name="certificate_level"/>
+                </field>
+                <field name="country_of_birth" position="after">
+                    <field name="partner_name"/>
+                    <field name="father_name"/>
+                    <field name="mother_name"/>
+                    <field name="tutor"/>
                 </field>
                 <xpath expr="//page[@name='hr_settings']" position="after">
                     <page name="teams" string="Equipe" groups="s2pc_employe.group_hr_team_leave">
@@ -21,6 +33,25 @@
                         </field>
                     </page>
                 </xpath>
+                <xpath expr="//page[@name='hr_settings']" position="before">
+                    <page name="childs" string="Enfants à charge">
+                        <field name="children_ids">
+                            <tree string="Enfants à charge" editable="bottom">
+                                <control>
+                                    <create name="add_line_control" string="Ajouter une ligne"/>
+                                </control>
+                                <field name="name"/>
+                                <field name="child_age"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <field name="work_phone" position="attributes">
+                    <attribute name="placeholder">Veuillez mettre l'indication pays s'il vous plaît. (Ex : +261)</attribute>
+                </field>
+                <field name="mobile_phone" position="attributes">
+                    <attribute name="placeholder">Veuillez mettre l'indication pays s'il vous plaît. (Ex : +261)</attribute>
+                </field>
             </field>
         </record>
     </data>

@@ -13,6 +13,21 @@ class HrEmployee(models.Model):
          ('french', 'Français'),
          ('malgace', 'Malagasy')],
         'Langue')
+    partner_name = fields.Char('Epoux/Epouse', index=1)
+    tutor = fields.Char('Tuteur/Tutrice', index=1)
+    father_name = fields.Char('Nom du père', index=1)
+    mother_name = fields.Char('Nom de la mère', index=1)
+    children_ids = fields.One2many('hr.child', 'employe_id', string="Enfants à charge")
+    certificate_level = fields.Selection([
+        ('primaire', 'Etudes primaires'),
+        ('secondaire', 'Etudes secondaires'),
+        ('bachelier', 'Bachelier'),
+        ('licence', 'Licence'),
+        ('master', 'Master'),
+        ('docteur', 'Doctorat'),
+        ('professorat', 'Professorat'),
+        ('other', 'Autre'),
+    ], "Niveau d'études", default='other', groups="hr.group_hr_user", tracking=True)
 
 
 class HrEmployeePublic(models.Model):
@@ -22,4 +37,9 @@ class HrEmployeePublic(models.Model):
         [('english', 'Anglais'),
          ('french', 'Français'),
          ('malgace', 'Malagasy')],
-        'Langue')
+        'Langue', readonly=True)
+    partner_name = fields.Char(readonly=True)
+    tutor = fields.Char(readonly=True)
+    father_name = fields.Char(readonly=True)
+    mother_name = fields.Char(readonly=True)
+

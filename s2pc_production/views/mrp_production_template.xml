@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-	<template id="report_mrp_production_template" name="Invoice pos document">
+	<template id="report_mrp_production_template" name="Production document">
 	  <t t-call="s2pc_base.external_layout">
 		<div class="page">
 		  <div class="row">
@@ -60,8 +60,6 @@
 		  </div>
 		  <t t-foreach="o.workorder_ids" t-as="workorder">
 			<br/>
-
-
 			<t t-if="not workorder.workcenter_id.conditioning_center">
 			  <div class="row operation-title">
 				<h3 t-field="workorder.name"></h3>
@@ -74,7 +72,7 @@
 			  </div>
 			  <br/>
 			  <div class="row">
-				<div class="col-8">
+				<div class="col-9">
 				  <table class="table-bordered table-condensed mrp-table">
 					<thead>
 					  <th class="mrp-background">Code</th>
@@ -86,35 +84,41 @@
 					</thead>
 					<tbody>
 					  <t t-foreach="workorder.restricted_move_raw_ids" t-as="move">
-						<tr>
-						  <td>
-							<span t-esc="move.product_id.code"></span>
-						  </td>
-						  <td style="width:40%">
-							<span t-esc="move.product_id.name"></span>
-						  </td>
-						  <td>
-							<span t-field="move.product_uom_qty"></span>
-						  </td>
-						  <td></td>
-						  <td>
-							<span t-esc="move.production_id.mrp_team.name"/>
-						  </td>
-						  <td></td>
-						</tr>
+						<t t-if="move not in o.move_byproduct_ids">
+						  <tr>
+							<td>
+							  <span t-esc="move.product_id.code"></span>
+							</td>
+							<td style="width:40%">
+							  <span t-esc="move.product_id.name"></span>
+							</td>
+							<td>
+							  <span t-field="move.product_uom_qty"></span>
+							</td>
+							<td></td>
+							<td>
+							  <span t-esc="move.production_id.mrp_team.name"/>
+							</td>
+							<td></td>
+						  </tr>
+						</t>
+
 					  </t>
 					</tbody>
 				  </table>
 				</div>
-				<div class="col-4">
+				<div class="col-3">
 				  <table class="mrp-table">
 					<tbody>
 					  <tr>
-						<td>Nom:</td>
-						<td>Signé:</td>
+						<td colspan="2">Nom:</td>
+
 					  </tr>
 					  <tr>
 						<td colspan="2">Date récéption:</td>
+					  </tr>
+					  <tr>
+						<td colspan="2">Signé:</td>
 					  </tr>
 					  <tr style="height:100px">
 						<td colspan="2"></td>
@@ -135,36 +139,43 @@
 				</div>
 			  </div>
 
-			</t>
 
-
-			<t t-if="workorder.check_ids">
-			  <br/>
-			  <div class="row">
-				<span class="sub-title">Contrôle qualité</span>
-			  </div>
-			  <div class="row">
-				<div class="col-12">
-				  <table class="table-bordered table-condensed mrp-table">
-					<thead>
-					  <th class="mrp-background">Point de controle</th>
-					  <th class="mrp-background">Poste de travail</th>
-					  <th class="mrp-background">Notes</th>
-					</thead>
-					<tbody>
-					  <t t-foreach="workorder.check_ids" t-as="check">
-						<tr>
-						  <td
-						  t-esc="check.point_id.title and check.point_id.name + ' ' +check.point_id.title or check.point_id.name"></td>
-						  <td t-esc="check.workcenter_id.name"></td>
-						  <td t-esc="check.additional_note or ''"></td>
-						</tr>
-					  </t>
-					</tbody>
-				  </table>
+			  <t t-if="workorder.check_ids">
+				<br/>
+				<div class="row">
+				  <span class="sub-title">Contrôle qualité</span>
 				</div>
-			  </div>
+				<div class="row">
+				  <div class="col-12">
+					<table class="table-bordered table-condensed mrp-table">
+					  <thead>
+						<th class="mrp-background">Point de controle</th>
+						<th class="mrp-background">Description</th>
 
+						<th class="mrp-background">Notes</th>
+						<th class="mrp-background">Résultat</th>
+					  </thead>
+					  <tbody>
+						<t t-foreach="workorder.check_ids" t-as="check">
+						  <t t-if="check.point_id">
+							<tr>
+							  <td
+							  t-esc="check.point_id.title and check.point_id.name + ' ' +check.point_id.title or check.point_id.name"></td>
+							  <td t-esc="check.point_id.note"></td>
+
+							  <td t-esc="check.additional_note or ''"></td>
+							  <td t-esc="o.get_selection_label(check._name, 'quality_state', check.quality_state)"></td>
+							</tr>
+						  </t>
+
+						</t>
+					  </tbody>
+					</table>
+				  </div>
+				</div>
+
+
+			  </t>
 
 			</t>
 
@@ -174,7 +185,7 @@
 		  <div class="row operation-title">
 			<h3>Ensemble des Contrôles Qualités</h3>
 		  </div>
-		  <t t-set="all_checks" t-value="set(o.workorder_ids.mapped('check_ids') + o.check_ids)"/>
+		  <t t-set="all_checks" t-value="set(o.workorder_ids.mapped('check_ids').filtered(lambda c: c.point_id))"/>
 		  <t t-if="all_checks">
 			<div class="row">
 			  <div class="col-12">
@@ -182,16 +193,21 @@
 				<table class="table-bordered table-condensed mrp-table">
 				  <thead>
 					<th class="mrp-background">Point de controle</th>
-					<th class="mrp-background">Poste de travail</th>
+					<th class="mrp-background">Description</th>
+
 					<th class="mrp-background">Notes</th>
+					<th class="mrp-background">Résultat</th>
 				  </thead>
 				  <tbody>
 					<t t-foreach="all_checks" t-as="check">
 					  <tr>
 						<td
-						t-esc="check.point_id.title and check.point_id.name + ' ' +check.point_id.title or check.point_id.name"></td>
-						<td t-esc="check.workcenter_id and check.workcenter_id.name or ''"></td>
+						t-esc="check.point_id.title and check.point_id.name + ' ' +check.point_id.title or check.point_id.name">
+						</td>
+						<td t-esc="check.point_id.note"></td>
+
 						<td t-esc="check.additional_note or ''"></td>
+						<td t-esc="o.get_selection_label(check._name, 'quality_state', check.quality_state)"></td>
 					  </tr>
 					</t>
 				  </tbody>
@@ -228,28 +244,19 @@
 
 				<tbody>
 				  <t t-foreach="o.consumption_record_ids" t-as="consumption">
-					<td>
-					  <span t-field="consumption.product_id"></span>
-					</td>
-					<td>
-					  <span t-field="consumption.product_consumed_qty_uom"></span>
-					</td>
-					<td>
-					  <span></span> <!-- TO DO: insert comment here-->
-					</td>
-					<td>
-					  <span></span> <!-- TO DO: insert consumptlion lot here-->
-					</td>
-					<td></td>
-				  </t>
-				  <t t-set="consumption_range"
-					 t-value="4 - len(o.consumption_record_ids) if len(o.consumption_record_ids) &lt; 4 else len(o.consumption_record_ids)"/>
-				  <t t-foreach="range(consumption_range)" t-as="count">
 					<tr>
-					  <td></td>
-					  <td></td>
-					  <td></td>
-					  <td></td>
+					  <td>
+						<span t-field="consumption.product_id"></span>
+					  </td>
+					  <td>
+						<span t-field="float_repr(consumption.product_consumed_qty_uom - consumption.product_expected_qty_uom, 2)"></span>
+					  </td>
+					  <td>
+						<span></span> <!-- TO DO: insert comment here-->
+					  </td>
+					  <td>
+						<span></span> <!-- TO DO: insert consumptlion lot here-->
+					  </td>
 					  <td></td>
 					</tr>
 
@@ -277,19 +284,22 @@
 					</thead>
 					<tbody>
 					  <t t-foreach="workorder.restricted_move_raw_ids" t-as="move">
-						<tr>
-						  <td>
-							<span t-esc="move.product_id.name"></span>
-						  </td>
-						  <td>
-							<span></span>
-						  </td>
-						  <td>
-							<span t-field="move.product_uom_qty"></span>
-						  </td>
-						  <td></td>
+						<t t-if="move not in o.move_byproduct_ids">
+						  <tr>
+							<td>
+							  <span t-esc="move.product_id.name"></span>
+							</td>
+							<td>
+							  <span></span>
+							</td>
+							<td>
+							  <span t-field="move.product_uom_qty"></span>
+							</td>
+							<td></td>
 
-						</tr>
+						  </tr>
+						</t>
+
 					  </t>
 					</tbody>
 				  </table>

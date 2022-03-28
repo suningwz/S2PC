@@ -244,12 +244,13 @@
 
 				<tbody>
 				  <t t-foreach="o.consumption_record_ids" t-as="consumption">
+					<t t-set="cqty" t-value="consumption.product_consumed_qty_uom -consumption.product_expected_qty_uom"/>
 					<tr>
 					  <td>
 						<span t-field="consumption.product_id"></span>
 					  </td>
 					  <td>
-						<span t-field="float_repr(consumption.product_consumed_qty_uom - consumption.product_expected_qty_uom, 2)"></span>
+						<span t-esc="cqty" t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'></span>
 					  </td>
 					  <td>
 						<span></span> <!-- TO DO: insert comment here-->

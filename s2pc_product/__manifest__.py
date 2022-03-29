@@ -21,8 +21,8 @@
     'depends': ['base', 'product', 's2pc_base'],
 
     # always loaded
-    'data': [
-    ],
+    'data': ['views/product_product_views.xml',
+             ],
     # only loaded in demonstration mode
     'demo': [
     ],

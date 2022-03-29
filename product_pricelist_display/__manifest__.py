@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name' : 'Product Pricelist Display',
-    'version' : '1.0',
+    'name': 'Product Pricelist Display',
+    'version': '1.0',
     'summary': 'Product pricelist',
     'sequence': 10,
     'description': """Display pricelist value in product list""",
@@ -40,4 +40,5 @@
 
         ],
     },
+    'license': 'LGPL-3',
 }

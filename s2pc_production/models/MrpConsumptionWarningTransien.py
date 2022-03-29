@@ -9,6 +9,7 @@ class MrpConsumptionWarning(models.Model):
 
 class MrpConsumptionWarningLineTransient(models.Model):
     _name = 'mrp.consumption.warning.line.model'
+    _description = 'description'
     _inherit = 'mrp.consumption.warning.line'
     # _description = "Line of issue consumption"
     #
@@ -18,6 +19,7 @@ class MrpConsumptionWarningLineTransient(models.Model):
 
 class mrpconsumption(models.Model):
     _name = 'mrp.consumption.record'
+    _description = 'description'
     mrp_production_id = fields.Many2one('mrp.production', "Manufacturing Order", readonly=True, required=True,
                                         ondelete="cascade")
     consumption = fields.Selection(related="mrp_production_id.consumption")

@@ -22,8 +22,8 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
 	_inherit = 'account.move.line'
 
-	advised_price_unit = fields.Monetary('Advised price unit', digits='Product Price', compute='_compute_advised_price_unit')
-	advised_ratio = fields.Float('Advised price ratio', digits='Discount', compute='_compute_advised_ratio')
+	advised_price_unit = fields.Monetary('Advised price unit', compute='_compute_advised_price_unit')
+	advised_ratio = fields.Float('Advised price ratio', compute='_compute_advised_ratio')
 
 	def _compute_advised_price_unit(self):
 		for rec in self:

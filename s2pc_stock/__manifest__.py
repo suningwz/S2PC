@@ -43,4 +43,5 @@
             's2pc_stock/static/src/css/stock_deliveryslip.css',
         ],
     },
+    'license': 'LGPL-3',
 }

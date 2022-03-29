@@ -6,7 +6,7 @@ from odoo import models, fields, api
 class AccountBankStatement(models.Model):
 	_inherit = 'account.bank.statement'
 
-	need_validation = fields.Boolean('Need validation', default=False, tracking=True, copy=False)
+	need_validation = fields.Boolean('Nécessite une validation', default=False, tracking=True, copy=False)
 
 	def action_need_validation(self):
 		for rec in self:

@@ -11,7 +11,7 @@ class MrpConsumptionWarningLineTransient(models.Model):
     _name = 'mrp.consumption.warning.line.model'
     _description = 'description'
     _inherit = 'mrp.consumption.warning.line'
-    # _description = "Line of issue consumption"
+    _description = "Line of issue consumption"
     #
     mrp_consumption_warning_id = fields.Many2one('mrp.consumption.warning.model', "Parent Wizard", readonly=True,
                                                  required=True, ondelete="cascade")
